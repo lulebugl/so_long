@@ -1,3 +1,5 @@
+so_long
+
 # Prerequisites
 *.d
 
@@ -19,6 +21,7 @@
 # Libraries
 *.lib
 *.a
+**/*.a
 *.la
 *.lo
 
