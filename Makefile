@@ -6,7 +6,7 @@
 #    By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/07 16:00:50 by llebugle          #+#    #+#              #
-#    Updated: 2024/11/07 19:27:24 by llebugle         ###   ########.fr        #
+#    Updated: 2024/11/08 13:19:24 by llebugle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,10 @@ CC 		= cc
 CFLAGS 	= -Werror -Wall -Wextra 
 RM 		= rm -rf
 OBJS 	= $(SRCS:.c=.o)
-SRCS 	= so_long.c
+
+SRCS 	= so_long.c 	\
+			events.c 	\
+			utils.c		\
 
 ifeq ($(shell uname), Linux)
 	MLX_DIR = ./minilibx-linux

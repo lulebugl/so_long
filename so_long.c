@@ -6,33 +6,11 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 21:00:32 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/07 20:26:49 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/08 13:22:29 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "minilibx-linux/mlx.h"
-#include "libft/libft.h"
-#include <X11/X.h>
-#include <X11/keysym.h>
-
-int on_destroy(t_data *data)
-{
-	mlx_destroy_window(data->mlx, data->win);
-	mlx_destroy_display(data->mlx);
-	free(data->mlx);
-	exit(0);
-	return (0);
-}
-
-int on_keypress(int keysym, t_data *data)
-{
-	(void)data;
-	ft_printf("Pressed key: %d\\n", keysym);
-	if (keysym == XK_Escape)
-		on_destroy(data);
-	return (0);
-}
 
 int main(void)
 {
