@@ -4,7 +4,6 @@ A 2D game project developed as part of the 42 School curriculum where players mu
 
 ## Ideas and To do
 
-
 ### Core Mechanics (Estimated: 14-16 hours)
 
 - [ ] backtracking for invalid map
@@ -37,18 +36,6 @@ A 2D game project developed as part of the 42 School curriculum where players mu
   - Game over conditions
 - [ ] key to show quickest exit?
 - [ ] make obstacle water when at the edge of map when possible (not fullscreen)
-
-
-## Table of Contents
-- [Description](#description)
-- [Features](#features)
-- [Installation](#installation)
-- [Controls](#controls)
-- [Implementation Details](#implementation-details)
-- [Project Structure](#project-structure)
-- [Custom Features](#custom-features)
-- [Resources](#resources)
-- [Credits](#credits)
 
 ## Description
 So_long is a simple 2D game using the MinilibX graphics library. The player navigates through a map, collecting items while trying to reach the exit in the minimum number of moves possible.
@@ -114,6 +101,16 @@ so_long/
 
 <!-- ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. -->
+<!-- ## Table of Contents
+- [Description](#description)
+- [Features](#features)
+- [Installation](#installation)
+- [Controls](#controls)
+- [Implementation Details](#implementation-details)
+- [Project Structure](#project-structure)
+- [Custom Features](#custom-features)
+- [Resources](#resources)
+- [Credits](#credits) -->
 
 ---
 Made with by [llebugle] at 42 School
