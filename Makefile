@@ -6,7 +6,7 @@
 #    By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/07 16:00:50 by llebugle          #+#    #+#              #
-#    Updated: 2024/11/08 13:19:24 by llebugle         ###   ########.fr        #
+#    Updated: 2024/11/08 19:47:12 by llebugle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,9 +28,10 @@ CFLAGS 	= -Werror -Wall -Wextra
 RM 		= rm -rf
 OBJS 	= $(SRCS:.c=.o)
 
-SRCS 	= so_long.c 	\
-			events.c 	\
-			utils.c		\
+SRCS 	= so_long.c 		\
+			events.c 		\
+			map_parsing.c	\
+			error.c			\
 
 ifeq ($(shell uname), Linux)
 	MLX_DIR = ./minilibx-linux
@@ -57,8 +58,12 @@ all : $(NAME)
 
 run: $(NAME)
 	@printf "$(BLUE)Running so_long...$(RESET)\n"
-	@./$(NAME)
-	
+	@./$(NAME) maps/example.ber
+
+fullscreen: $(NAME)
+	@printf "$(BLUE)Running so_long...$(RESET)\n"
+	@./$(NAME) map.ber fullscreen
+
 $(NAME) : $(OBJS)
 	@make -C $(MLX_DIR)
 	@make -C libft
