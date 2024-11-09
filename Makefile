@@ -6,7 +6,7 @@
 #    By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/07 16:00:50 by llebugle          #+#    #+#              #
-#    Updated: 2024/11/09 18:01:14 by llebugle         ###   ########.fr        #
+#    Updated: 2024/11/09 18:43:51 by llebugle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,7 +78,7 @@ fclean : clean clean_test
 
 clean : clean_test
 	@make clean -C libft
-	@$(RM) *.o
+	@$(RM) srcs/*.o
 
 re : fclean all
 
@@ -100,10 +100,10 @@ test: $(TEST_NAME)
 	@printf "$(BLUE)Running tests...$(RESET)\n"
 	@valgrind ./$(TEST_NAME)
 
-$(TEST_NAME): $(TEST_OBJS) $(filter-out so_long.o, $(OBJS))
+$(TEST_NAME): $(TEST_OBJS) $(filter-out srcs/so_long.o, $(OBJS))
 	@make -C $(MLX_DIR)
 	@make -C libft
-	@$(CC) $(TEST_OBJS) $(filter-out so_long.o, $(OBJS)) $(LIBFT) \
+	@$(CC) $(TEST_OBJS) $(filter-out srcs/so_long.o, $(OBJS)) $(LIBFT) \
 		$(TEST_FLAGS) $(MLX_LIB) $(MLX) -o $(TEST_NAME)
 
 $(TEST_DIR)/%.o: $(TEST_DIR)/%.c

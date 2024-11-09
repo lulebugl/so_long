@@ -6,22 +6,22 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 15:37:10 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/09 17:44:50 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/09 18:51:57 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <assert.h>
-#include "../so_long.h" // Include your main header
 #include "tests.h"
+#include "../srcs/so_long.h"
 
-void data_init(t_data *data)
+static void data_init(t_data *data)
 {
 	data->max_col = 0;
 	data->max_row = 0;
 	data->err_msg = NULL;
 	data->map = malloc(sizeof(t_map));
 	if (!data->map)
-		display_err_and_exit(MALLOC_ERROR_MSG, data);
+		display_err_and_exit(MALLOC_ERROR, data);
 }
 
 void test_map_validation(void)
