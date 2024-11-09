@@ -6,11 +6,12 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 18:48:23 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/09 18:50:04 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/09 19:47:34 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/so_long.h"
+
 
 // to implement later to play fullscreen
 // if (av[2] && (!ft_strncmp(av[2], "fullscreen", 11)))

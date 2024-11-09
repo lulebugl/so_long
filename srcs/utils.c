@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_main.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 15:38:18 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/09 19:11:26 by llebugle         ###   ########.fr       */
+/*   Created: 2024/11/09 19:23:41 by llebugle          #+#    #+#             */
+/*   Updated: 2024/11/09 19:24:44 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "tests.h"
 #include "../includes/so_long.h"
 
-int main(void)
+void	free_tab(char **tab)
 {
-    printf("\nRunning so_long tests...\n\n");
-    
-    // Run test suites
-    test_map_validation();
-    test_read_map();
-    
-    printf("\nAll tests passed! ✅\n");
-    return 0;
+	int i;
+
+	i = -1;
+	while (tab[++i])
+		free(tab[i]);
+	free(tab);
 }

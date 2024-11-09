@@ -6,11 +6,12 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:16:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/08 20:05:55 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/09 19:01:51 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/so_long.h"
+
 
 int on_keypress(int keysym, t_data *data)
 {

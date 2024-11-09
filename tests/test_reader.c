@@ -6,12 +6,12 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 17:47:22 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/09 18:42:04 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/09 19:11:30 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tests.h"
-#include "../srcs/so_long.h"
+#include "../includes/so_long.h"
 
 int mock_validate_map_content(const char *map, t_data *data) {
     if (strstr(map, "1111") != NULL) return 0; // Dummy check for valid content

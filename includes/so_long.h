@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:33:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/09 18:51:57 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/09 19:25:03 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@
 # define WRONG_EXTENSION "Map file extention is wrong (.ber expected).\n"
 # define NO_MAP "The Map couldn't be opened. Does it exist?\n"
 # define MALLOC_ERROR "Memory allocation failed.\n"
-# define EMPTY_LINES "Your map has empty lines\n"
-# define INVALID_CHAR "Your map has an invalid element\n"
+# define EMPTY_LINES "The map has empty lines\n"
+# define INVALID_CHAR "The map has an invalid element\n"
+# define MAP_NOT_RECTANGLE "The map has is not rectangle\n"
 
 typedef struct s_map
 {
@@ -63,5 +64,8 @@ int			on_destroy(t_data *data);
 // error.c
 void		display_err_and_exit(const char *msg, t_data *data);
 void		set_err_msg(char *msg, t_data *data);
+
+// utils.c
+void		free_tab(char **tab);
 
 #endif

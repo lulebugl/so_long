@@ -6,11 +6,12 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:42:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/09 18:53:42 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/09 20:17:28 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/so_long.h"
+
 
 int store_map(int fd, t_data *data, char **map)
 {
@@ -27,10 +28,7 @@ int store_map(int fd, t_data *data, char **map)
 			return (set_err_msg(MALLOC_ERROR, data), 1);
 		data->map->row++;
 		if (data->map->row > (data->max_row / TILE_SIZE))
-		{
-			free(map);
 			return (set_err_msg(MAP_TOO_BIG, data), 1);
-		}
 	}
 	return (0);
 }
@@ -56,21 +54,39 @@ int	validate_map_content(char *map, t_data *data)
 	return (0);
 }
 
-void	check_map_lenght(char *map, t_data *data)
+void	check_map_length(char *map, t_data *data)
 {
-	char **tab;
+	char 	**tab;
+	int		col;
+	int i;
 
+	i = -1;
 	tab = ft_split(map, '\n');
 	if (!tab)
 	{
 		free(map);
 		display_err_and_exit(MALLOC_ERROR, data);
 	}
-	while (tab)
+	col = ft_strlen(tab[0]);
+	ft_printf("max_col : %d\n", data->max_col / TILE_SIZE);
+	ft_printf("col : %d\n", col);
+	if (col > data->max_col / TILE_SIZE)
 	{
-		printf("%s", *tab);
-		tab++;
+		free_tab(tab);
+		free(map);
+		display_err_and_exit(MAP_TOO_BIG, data);
 	}
+	while (tab[++i])
+	{
+		if (ft_strlen(tab[i]) != col)
+		{
+			free(map);
+			free_tab(tab);
+			display_err_and_exit(MAP_NOT_RECTANGLE, data);
+		}
+	}
+	data->map->col = col;
+	free_tab(tab);
 }
 
 int	read_map(char *filename, t_data *data)
@@ -83,12 +99,13 @@ int	read_map(char *filename, t_data *data)
 		return (set_err_msg(NO_MAP, data), 1);
 	map = ft_calloc(1, sizeof(char));
 	if (store_map(fd, data, &map) != 0)
-		return (1);
+		return (free(map), 1);
+
 	assert(map != NULL);
 	ft_printf("map :\n%s\n", map);
 	if (validate_map_content(map, data) == 1)
 		return (free(map), 1);
-	check_map_lenght(map, data);
+	check_map_length(map, data);
 	close(fd);
 	// parse the map using a static
 	// matrix[row_max / TILESET][col_max / TILESET]

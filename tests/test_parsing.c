@@ -6,13 +6,13 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 15:37:10 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/09 18:51:57 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/09 19:11:29 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <assert.h>
 #include "tests.h"
-#include "../srcs/so_long.h"
+#include "../includes/so_long.h"
 
 static void data_init(t_data *data)
 {

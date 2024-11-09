@@ -6,7 +6,7 @@
 #    By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/07 16:00:50 by llebugle          #+#    #+#              #
-#    Updated: 2024/11/09 18:43:51 by llebugle         ###   ########.fr        #
+#    Updated: 2024/11/09 19:25:28 by llebugle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,14 +24,16 @@ RESET	=\033[0m
 
 NAME	= so_long
 CC 		= cc
-CFLAGS 	= -Werror -Wall -Wextra 
+CFLAGS 	= -Werror -Wall -Wextra -I includes
 RM 		= rm -rf
 OBJS 	= $(SRCS:.c=.o)
 
 SRCS 	= srcs/so_long.c 		\
 			srcs/events.c 		\
 			srcs/map_parsing.c	\
-			srcs/error.c			\
+			srcs/parsing.c		\
+			srcs/error.c		\
+			srcs/utils.c
 
 ifeq ($(shell uname), Linux)
 	MLX_DIR = ./minilibx-linux
@@ -66,7 +68,7 @@ fullscreen: $(NAME)
 
 $(NAME) : $(OBJS)
 	@make -C $(MLX_DIR)
-	@make -C libft
+	@make -s -C libft
 	@$(CC) $(OBJS) $(LIBFT) $(CFLAGS) -g $(MLX_LIB) $(MLX) -o $(NAME)
 
 %.o : %.c
@@ -102,7 +104,7 @@ test: $(TEST_NAME)
 
 $(TEST_NAME): $(TEST_OBJS) $(filter-out srcs/so_long.o, $(OBJS))
 	@make -C $(MLX_DIR)
-	@make -C libft
+	@make -s -C libft
 	@$(CC) $(TEST_OBJS) $(filter-out srcs/so_long.o, $(OBJS)) $(LIBFT) \
 		$(TEST_FLAGS) $(MLX_LIB) $(MLX) -o $(TEST_NAME)
 

@@ -6,11 +6,11 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 21:00:32 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/09 18:51:57 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/09 20:11:46 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/so_long.h"
 
 static void data_init(t_data *data)
 {
@@ -20,6 +20,8 @@ static void data_init(t_data *data)
 	data->map = malloc(sizeof(t_map));
 	if (!data->map)
 		display_err_and_exit(MALLOC_ERROR, data);
+	data->map->col = 0;
+	data->map->row = 0;
 }
 
 int main(int ac, char **av)
@@ -29,15 +31,15 @@ int main(int ac, char **av)
 	int		img_height;
 
 	data.mlx = mlx_init();
+	if (!data.mlx)
+		return (1);
 	data_init(&data);
 	parse_arguments(ac, av, &data);
 
-	data.map->row = 20;
-	data.map->col = 30;
 	ft_printf("sizex : %d\n", data.map->row);
 	ft_printf("sizey : %d\n", data.map->col);
-	if (!data.mlx)
-		return (1);
+	data.map->row = 20;
+	data.map->col = 30;
 	data.win = mlx_new_window(data.mlx, data.map->col * TILE_SIZE, data.map->row * TILE_SIZE, "So_long");
 
 	if (!data.win)
@@ -50,8 +52,6 @@ int main(int ac, char **av)
 	mlx_hook(data.win, DestroyNotify, StructureNotifyMask, &on_destroy, &data);
 	
 	data.textures[0] = mlx_xpm_file_to_image(data.mlx, GRASS, &img_width, &img_height);
-	ft_printf("width : %d\n", img_width);
-	ft_printf("height : %d\n", img_height);
 	mlx_put_image_to_window(data.mlx, data.win, data.textures[0], 1, 0 * TILE_SIZE);
 	mlx_put_image_to_window(data.mlx, data.win, data.textures[0], 1, 1 * TILE_SIZE);
 	mlx_put_image_to_window(data.mlx, data.win, data.textures[0], 1, 2 * TILE_SIZE);
