@@ -6,12 +6,11 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:42:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/08 21:20:51 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/09 17:27:57 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 void	check_arguments(int ac, char **av, t_data *data)
 {
@@ -23,88 +22,63 @@ void	check_arguments(int ac, char **av, t_data *data)
 	if (!ft_strnstr(&av[1][len - 4], ".ber", 4))
 		display_err_and_exit(WRONG_EXTENSION, data);
 }
-char	*ft_strjoin_n(char *s1, char const *s2)
-{
-	char	*new;
-	size_t	len;
-	size_t	i;
-	size_t	j;
 
-	if (!s1 && !s2)
-		return (NULL);
-	if (!s1 && s2)
-		len = ft_strlen(s2);
-	else
-		len = ft_strlen(s1) + ft_strlen(s2);
-	new = malloc(sizeof(char) * len + 1);
-	if (!new)
-		return (NULL);
-
-	i = -1;
-	while (s1[++i] && i < len)
-		new[i] = s1[i];
-	j = -1;
-	while (s2[++j] && i + j < len)
-		new[i + j] = s2[j];
-	new[i + j] = '\0';
-	free(s1);
-	return (new);
-}
-
-int	is_map_full(char *map)
+int	validate_map_content(char *map, t_data *data)
 {
 	int	i;
-	int len_map;
 
 	i = 0;
-	len_map = ft_strlen(map);
-	if (len_map < 3)
-		return (-1);
+	if (ft_strlen(map) < 3)
+		return (set_err_msg(EMPTY_LINES, data), 1);
 	if (*map == '\n' || !(*map))
-		return (-1);
+		return (set_err_msg(EMPTY_LINES, data), 1);
 	while (map[i] && map[i + 1])
 	{
+		if (!ft_is_charset(map[i], VALID_OBJECT) ||
+			!ft_is_charset(map[i + 1], VALID_OBJECT))
+			return (set_err_msg(INVALID_CHAR, data), 1);
 		if (map[i] == '\n' && map[i + 1] == '\n')
-			return (-1);
+			return(set_err_msg(EMPTY_LINES, data), 1);
 		i++;
 	}
 	return (0);
 }
 
-void	read_map(char *filename, t_data *data)
+int	read_map(char *filename, t_data *data)
 {
 	int fd;
 	char *line;
 	char *map;
+	int		err;
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		display_err_and_exit(NO_MAP, data);
+		return (set_err_msg(NO_MAP, data), 1);
 	map = ft_calloc(1, sizeof(char));
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		map = ft_strjoin_n(map, line);
+		map = ft_strjoin_n_free(map, line);
 		free(line);
 		if (!map)
-			display_err_and_exit(MALLOC_ERROR_MSG, data);
+			return (set_err_msg(MALLOC_ERROR_MSG, data), 1);
 		data->map->row++;
 		if (data->map->row > (data->max_row / TILE_SIZE))
 		{
 			free(map);
-			display_err_and_exit(MAP_TOO_BIG, data);
+			return (set_err_msg(MAP_TOO_BIG, data), 1);
 		}
+
 	}
 	ft_printf("map :\n%s\n", map);
-	if (is_map_full(map) == -1)
+	if (validate_map_content(map, data) == 1)
 	{
 		free(map);
-		display_err_and_exit(EMPTY_LINES, data);
+		return (1);
 	}
 	close(fd);
-
 	// parse the map using a static
 	// matrix[row_max / TILESET][col_max / TILESET]
 	// int or char?
@@ -113,6 +87,7 @@ void	read_map(char *filename, t_data *data)
 	// for sure the size and and is valid
 
 	free(map);
+	return (0);
 }
 
 int parse_arguments(int ac, char **av, t_data *data)
@@ -121,7 +96,8 @@ int parse_arguments(int ac, char **av, t_data *data)
 	mlx_get_screen_size(data->mlx, &(data->max_col), &(data->max_row));
 	ft_printf("max_row : %d\n", data->max_row);
 	ft_printf("max_col : %d\n", data->max_col);
-	read_map(av[1], data);
+	if (read_map(av[1], data) != 0)
+		display_err_and_exit(NULL, data);
 	return (0);
 }
 

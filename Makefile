@@ -6,7 +6,7 @@
 #    By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/07 16:00:50 by llebugle          #+#    #+#              #
-#    Updated: 2024/11/08 19:47:12 by llebugle         ###   ########.fr        #
+#    Updated: 2024/11/09 18:01:14 by llebugle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,10 +28,10 @@ CFLAGS 	= -Werror -Wall -Wextra
 RM 		= rm -rf
 OBJS 	= $(SRCS:.c=.o)
 
-SRCS 	= so_long.c 		\
-			events.c 		\
-			map_parsing.c	\
-			error.c			\
+SRCS 	= srcs/so_long.c 		\
+			srcs/events.c 		\
+			srcs/map_parsing.c	\
+			srcs/error.c			\
 
 ifeq ($(shell uname), Linux)
 	MLX_DIR = ./minilibx-linux
@@ -72,14 +72,44 @@ $(NAME) : $(OBJS)
 %.o : %.c
 	@$(CC) -o $@ -c $<
 
-fclean : clean
+fclean : clean clean_test
 	@make fclean -C libft
 	@$(RM) so_long
 
-clean :
+clean : clean_test
 	@make clean -C libft
 	@$(RM) *.o
 
-re : fclean all 
+re : fclean all
 
-.PHONY: all clean fclean re run
+# -----------------------------------Tests-------------------------------------
+
+TEST_DIR	= tests
+TEST_SRCS	= $(TEST_DIR)/test_parsing.c	\
+		$(TEST_DIR)/test_main.c			 	\
+		$(TEST_DIR)/test_reader.c
+
+TEST_OBJS	= $(TEST_SRCS:.c=.o)
+TEST_NAME	= test_runner
+
+# Add test-specific flags
+TEST_FLAGS	= -g -I./Unity/src
+
+# Rules for testing
+test: $(TEST_NAME)
+	@printf "$(BLUE)Running tests...$(RESET)\n"
+	@valgrind ./$(TEST_NAME)
+
+$(TEST_NAME): $(TEST_OBJS) $(filter-out so_long.o, $(OBJS))
+	@make -C $(MLX_DIR)
+	@make -C libft
+	@$(CC) $(TEST_OBJS) $(filter-out so_long.o, $(OBJS)) $(LIBFT) \
+		$(TEST_FLAGS) $(MLX_LIB) $(MLX) -o $(TEST_NAME)
+
+$(TEST_DIR)/%.o: $(TEST_DIR)/%.c
+	@$(CC) $(CFLAGS) $(TEST_FLAGS) -c $< -o $@
+
+clean_test:
+	@$(RM) $(TEST_OBJS) $(TEST_NAME)
+
+.PHONY: all clean fclean re run test clean_test
