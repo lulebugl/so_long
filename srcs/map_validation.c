@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:28:23 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/11 17:06:00 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/11 20:44:02 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int collectible_exists(char *map)
 {
 	while (*map)
-		if (*map++ == COLLECTIBLE)
+		if (*map++ == 'C')
 			return (1);
 	return (0);
 }
@@ -26,9 +26,9 @@ static int player_exists(char *map)
 
 	while (*map)
 	{
-		if (*map == PLAYER && exist == true)
+		if (*map == 'P' && exist == true)
 			return (0);
-		if (*map == PLAYER)
+		if (*map == 'P')
 			exist = true;
 		map++;
 	}
@@ -37,7 +37,7 @@ static int player_exists(char *map)
 	return (0);
 }
 
-// Check mthere is enough collectible, no empty lines, a player...
+// Check there is enough collectible, no empty lines, a player...
 int	validate_map_content(char *map, t_data *data)
 {
 	int	i;
@@ -63,7 +63,7 @@ int	validate_map_content(char *map, t_data *data)
 	return (0);
 }
 
-int	validate_map_size(char *map, t_data *data)
+char  **validate_map_size(char *map, t_data *data)
 {
 	char 	**tab;
 	int		col;
@@ -72,23 +72,20 @@ int	validate_map_size(char *map, t_data *data)
 	i = -1;
 	tab = ft_split(map, '\n');
 	if (!tab)
-		return (set_err_msg(MALLOC_ERROR, data), 1);
+		return (set_err_msg(MALLOC_ERROR, data), NULL);
 	col = ft_strlen(tab[0]);
-	ft_printf("max_col : %d\n", data->max_col / TILE_SIZE);
-	ft_printf("col : %d\n", col);
 	if (col > data->max_col / TILE_SIZE)
 	{
 		free_tab(tab);
-		return (set_err_msg(MAP_TOO_BIG, data), 1);
+		return (set_err_msg(MAP_TOO_BIG, data), NULL);
 
 	}
 	while (tab[++i])
 		if (ft_strlen(tab[i]) != col)
 		{
 			free_tab(tab);
-			return (set_err_msg(MAP_NOT_RECTANGLE, data), 1);
+			return (set_err_msg(MAP_NOT_RECTANGLE, data), NULL);
 		}
 	data->map->col = col;
-	free_tab(tab);
-	return (1);
+	return (tab);
 }
