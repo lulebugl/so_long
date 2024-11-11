@@ -6,20 +6,11 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 18:48:23 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/09 19:47:34 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/11 16:07:26 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
-
-// to implement later to play fullscreen
-// if (av[2] && (!ft_strncmp(av[2], "fullscreen", 11)))
-// {
-// 	mlx_get_screen_size(data.mlx, &(data.map->col), &(data.map->row));
-// 	data.map->row /= TILE_SIZE;
-// 	data.map->col /= TILE_SIZE;
-// }
 
 void	check_arguments(int ac, char **av, t_data *data)
 {
