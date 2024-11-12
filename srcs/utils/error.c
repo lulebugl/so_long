@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 17:07:39 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/12 15:51:45 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/12 17:00:36 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@ void set_err_msg(char *msg, t_data *data)
 	data->err_msg = msg;
 }
 
-static clean_map(t_map *map)
+static void clean_map(t_map *map)
 {
-	printf("row : %d\nmatrix : %p\n", map->row, map->matrix);
 	if (map->matrix)
 		free_matrix(map->matrix, map->row);
 	free(map);

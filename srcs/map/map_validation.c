@@ -6,11 +6,11 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:28:23 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/12 15:03:37 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/12 17:14:16 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../../includes/so_long.h"
 
 static int	collectible_exists(char *map)
 {
@@ -60,8 +60,6 @@ int	validate_map_content(char *map, t_data *data)
 		return (set_err_msg(NO_COLLECTIBLE, data), -1);
 	while (map[i] && map[i + 1])
 	{
-		// if (!ft_strchr(VALID_OBJECT, map[i]) ||
-		// 	!ft_strchr(VALID_OBJECT, map[i + 1]))
 		if (!ft_is_charset(map[i], VALID_OBJECT) || !ft_is_charset(map[i + 1],
 				VALID_OBJECT))
 			return (set_err_msg(INVALID_CHAR, data), -1);
@@ -85,13 +83,13 @@ char	**validate_map_size(char *map, t_data *data)
 	col = ft_strlen(tab[0]);
 	if (col > data->max_col / TILE_SIZE)
 	{
-		free_tab(tab);
+		ft_free_tab(tab);
 		return (set_err_msg(MAP_TOO_BIG, data), NULL);
 	}
 	while (tab[++i])
-		if (ft_strlen(tab[i]) != col)
+		if ((int)ft_strlen(tab[i]) != col)
 		{
-			free_tab(tab);
+			ft_free_tab(tab);
 			return (set_err_msg(MAP_NOT_RECTANGLE, data), NULL);
 		}
 	data->map->col = col;

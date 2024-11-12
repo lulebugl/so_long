@@ -6,7 +6,7 @@
 #    By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/07 16:00:50 by llebugle          #+#    #+#              #
-#    Updated: 2024/11/11 22:30:08 by llebugle         ###   ########.fr        #
+#    Updated: 2024/11/12 17:37:11 by llebugle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,16 +26,21 @@ NAME	= so_long
 CC 		= cc
 CFLAGS 	= -Werror -Wall -Wextra -I includes
 RM 		= rm -rf
-OBJS 	= $(SRCS:.c=.o)
 
-SRCS 	= srcs/so_long.c 			\
-			srcs/events.c 			\
-			srcs/map_parsing.c		\
-			srcs/parsing.c			\
-			srcs/map_validation.c	\
-			srcs/error.c			\
-			srcs/solve.c			\
-			srcs/utils.c
+OBJS_DIR = objs
+SRCS_DIR = srcs
+OBJS	 = $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
+
+SRCS 	= main.c 					\
+			events.c 				\
+			parsing.c				\
+			matrix.c				\
+			map/map_utils.c		\
+			map/map_solver.c		\
+			map/map_init.c		\
+			map/map_validation.c	\
+			utils/utils.c			\
+			utils/error.c			\
 
 ifeq ($(shell uname), Linux)
 	MLX_DIR = ./minilibx-linux
@@ -70,11 +75,14 @@ fullscreen: $(NAME)
 
 $(NAME) : $(OBJS)
 	@make -C $(MLX_DIR)
+	@echo "$(GREEN)Building libft...$(RESET)"
 	@make -s -C libft
 	@$(CC) $(OBJS) $(LIBFT) $(CFLAGS) -g $(MLX_LIB) $(MLX) -o $(NAME)
 
-%.o : %.c
-	@$(CC) -o $@ -c $<
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
+	@mkdir -p $(dir $@)
+#@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+	@$(CC) $(INC) -c $< -o $@
 
 fclean : clean clean_test
 	@make fclean -C libft
@@ -82,6 +90,7 @@ fclean : clean clean_test
 
 clean : clean_test
 	@make clean -C libft
+	@$(RM) -r $(OBJS_DIR)
 	@$(RM) srcs/*.o
 
 re : fclean all

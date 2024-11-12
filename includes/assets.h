@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:09:00 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/08 14:35:42 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/12 15:56:22 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define ASSETS_H
 
 # define NINJA "./assets/ninja.xpm"
-
-# define TILE_SIZE 64
 
 # define GRASS 		"assets/tiles/middle.xpm"
 # define GRASS_TCL 	"assets/tiles/top_corner_left.xpm"
