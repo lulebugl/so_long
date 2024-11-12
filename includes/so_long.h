@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:33:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/11 20:39:57 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/12 15:42:15 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,15 @@
 # define EMPTY_LINES "The map has empty lines.\n"
 # define INVALID_CHAR "The map has an invalid element.\n"
 # define MAP_NOT_RECTANGLE "The map has is not rectangle.\n"
-# define NO_PLAYER "There is no or multiple players on the map.\n"
+# define NO_PLAYER_OR_EXIT "Invalid number of exit or players on the map.\n"
 # define NO_COLLECTIBLE "There is no collectibles on the map.\n"
+# define INVALID_PATH "Some collectibles can't be reached.\n"
+# define INVALID_EXIT "Exit can't be reached.\n"
 
+# define RED "\033[0;31m"
+# define GREEN "\033[0;32m"
+# define YELLOW "\033[0;33m"
+# define RESET "\033[0;37m"
 // # define OBSTACLE 1
 // # define PLAYER	2
 // # define COLLECTIBLE 3
@@ -44,7 +50,8 @@ typedef enum e_map_element
 	EMPTY = 0,
 	OBSTACLE = 1,
 	COLLECTIBLE = 2,
-	PLAYER = 3
+	PLAYER = 3,
+	EXIT = 4
 }				t_map_element;
 
 typedef struct s_position
@@ -58,7 +65,9 @@ typedef struct s_map
 	int			**matrix;
 	int			row;
 	int			col;
+	int			nb_collectible;
 	t_position	player;
+	t_position	exit;
 }				t_map;
 
 typedef struct s_data
@@ -91,5 +100,9 @@ void			free_tab(char **tab);
 void			free_matrix(int **matrix, int i);
 void			close_and_free(void *str, int fd);
 void			print_matrix(int **matrix, t_data *data);
+
+// backtracking.c
+
+int 			solve(t_data *data);
 
 #endif

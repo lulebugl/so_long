@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:42:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/11 20:42:20 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/12 15:48:38 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	store_map(int fd, t_data *data, char **map)
 	return (0);
 }
 
-static int	fill_matrix_row(int *row, char *tab_row)
+static int	fill_matrix_row(int *row, char *tab_row, t_data *data, int posx)
 {
 	int	j;
 
@@ -40,11 +40,26 @@ static int	fill_matrix_row(int *row, char *tab_row)
 	while (tab_row[j])
 	{
 		if (tab_row[j] == 'P')
+		{
+			data->map->player.x = posx;
+			data->map->player.y = j;
+			// printf("player x: %d\n", data->map->player.x);
+			// printf("player y: %d\n", data->map->player.y);
 			row[j] = PLAYER;
+		}
 		else if (tab_row[j] == 'C')
+		{
+			data->map->nb_collectible++;	
 			row[j] = COLLECTIBLE;
+		}
 		else if (tab_row[j] == '1')
 			row[j] = OBSTACLE;
+		else if (tab_row[j] == 'E')
+		{
+			data->map->exit.x = posx;
+			data->map->exit.y = j;
+			row[j] = EXIT;
+		}
 		else
 			row[j] = 0;
 		j++;
@@ -70,10 +85,10 @@ int	create_matrix(char *map, char **tab, t_data *data)
 			free_tab(tab);
 			return (set_err_msg(MALLOC_ERROR, data), -1);
 		}
-		fill_matrix_row(matrix[i], tab[i]);
+		fill_matrix_row(matrix[i], tab[i], data, i);
 	}
 	data->map->matrix = matrix;
-	// print_matrix(data->map->matrix, data);
+	print_matrix(data->map->matrix, data);
 	free(map);
 	free_tab(tab);
 	return (0);
@@ -82,7 +97,7 @@ int	create_matrix(char *map, char **tab, t_data *data)
 static int	validate_fd_and_init(int fd, t_data *data, char **map)
 {
 	if (fd < 0 || !data || !map)
-		display_err_and_exit(NO_MAP, data);
+		display_err_and_exit(NO_MAP	, data);
 	*map = ft_calloc(1, sizeof(char));
 	if (!*map)
 		return (set_err_msg(MALLOC_ERROR, data), -1);
@@ -98,10 +113,11 @@ int	read_map(char *filename, t_data *data)
 	fd = open(filename, O_RDONLY);
 	if (validate_fd_and_init(fd, data, &map) != 0)
 		return (-1);
-	map = ft_calloc(1, sizeof(char));
+	printf("test\n");
 	if (store_map(fd, data, &map) != 0)
 		return (close_and_free(map, fd), -1);
 	assert(map != NULL);
+
 	// ft_printf("map :\n%s\n", map);
 	if (validate_map_content(map, data) != 0)
 		return (close_and_free(map, fd), -1);

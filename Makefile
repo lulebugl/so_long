@@ -6,7 +6,7 @@
 #    By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/07 16:00:50 by llebugle          #+#    #+#              #
-#    Updated: 2024/11/11 15:57:31 by llebugle         ###   ########.fr        #
+#    Updated: 2024/11/11 22:30:08 by llebugle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRCS 	= srcs/so_long.c 			\
 			srcs/parsing.c			\
 			srcs/map_validation.c	\
 			srcs/error.c			\
+			srcs/solve.c			\
 			srcs/utils.c
 
 ifeq ($(shell uname), Linux)

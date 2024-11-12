@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 19:23:41 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/11 20:39:49 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/11 21:31:03 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,16 @@ void	free_tab(char **tab)
 
 void free_matrix(int **matrix, int i)
 {
+	if (!matrix || !*matrix)
+		return ;
+	if (!i)
+	{
+		free(matrix);
+		return ;
+	}
 	while (i--)
-        free(matrix[i]);
+		if (matrix[i])
+        	free(matrix[i]);
     free(matrix);
 }
 
