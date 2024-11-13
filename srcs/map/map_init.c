@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:40:43 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/12 16:51:17 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/13 14:02:28 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,26 +42,52 @@ static int	store_map(int fd, t_data *data, char **map)
 	return (0);
 }
 
+int	map_closed_by_obstacle(char **tab, t_data *data)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	while (tab[0][i])
+		if (tab[0][i++] != OBSTACLE + '0')
+			return (data->err_msg = MAP_NOT_CLOSED, 0);
+	i = -1;
+	while (++i < data->map->row - 1)
+	{
+		if ((tab[i][0] != OBSTACLE + '0') || (tab[i][data->map->col
+				- 1] != OBSTACLE + '0'))
+			return (data->err_msg = MAP_NOT_CLOSED, 0);
+		// replace OBS by water
+	}
+	i = 0;
+	while (tab[data->map->row - 1][i])
+		if (tab[data->map->row - 1][i++] != OBSTACLE + '0')
+			return (data->err_msg = MAP_NOT_CLOSED, 0);
+	return (1);
+}
+
 int	read_map(char *filename, t_data *data)
 {
-	int fd;
-	char *map;
-	char **tab;
+	int		fd;
+	char	*map;
+	char	**tab;
 
 	fd = open(filename, O_RDONLY);
 	if (validate_fd_and_init(fd, data, &map) != 0)
 		return (-1);
-	printf("test\n");
 	if (store_map(fd, data, &map) != 0)
 		return (close_and_free(map, fd), -1);
 	assert(map != NULL);
-
-	// ft_printf("map :\n%s\n", map);
 	if (validate_map_content(map, data) != 0)
 		return (close_and_free(map, fd), -1);
 	tab = validate_map_size(map, data);
 	if (tab == NULL)
 		return (close_and_free(map, fd), -1);
+	if (!map_closed_by_obstacle(tab, data))
+	{
+		ft_free_tab(tab);
+		return (close_and_free(map, fd), -1);
+	}
 	if (create_matrix(map, tab, data) != 0)
 		return (close_and_free(map, fd), -1);
 	close(fd);

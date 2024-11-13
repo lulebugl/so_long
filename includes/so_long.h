@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:33:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/12 17:14:54 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/13 14:05:23 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define NO_COLLECTIBLE "There is no collectibles on the map.\n"
 # define INVALID_PATH "Some collectibles can't be reached.\n"
 # define INVALID_EXIT "Exit can't be reached.\n"
+# define MAP_NOT_CLOSED "The map is not closed.\n"
 
 # define RED "\033[0;31m"
 # define GREEN "\033[0;32m"
@@ -50,7 +51,8 @@ typedef enum e_map_element
 	OBSTACLE = 1,
 	COLLECTIBLE = 2,
 	PLAYER = 3,
-	EXIT = 4
+	EXIT = 4,
+	WATER = 5,
 }			t_map_element;
 
 typedef struct s_position
@@ -105,5 +107,7 @@ int			is_map_solvable(t_data *data);
 int	create_matrix(char *map, char **tab, t_data *data);
 
 // backtracking.c
+
+void    debug_print(t_data *data, char *location);
 
 #endif

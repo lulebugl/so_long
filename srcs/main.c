@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 21:00:32 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/12 17:57:41 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/13 13:04:35 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,8 @@ void	launch_game(t_data *data)
 	{
 		j = -1;
 		while (++j < data->map->col)
-			mlx_put_image_to_window(data->mlx, data->win, data->textures[0], i * TILE_SIZE, j * TILE_SIZE);
+			mlx_put_image_to_window(data->mlx, data->win, data->textures[0], j * TILE_SIZE, i * TILE_SIZE);
 	}
-	printf("test\n");
-	mlx_destroy_window(data->mlx, data->win);
 }
 
 int main(int ac, char **av)
