@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:09:00 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/15 13:22:41 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/15 18:50:16 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,17 @@
 
 # define NINJA "./assets/ninja.pxpm"
 
-# define GRASS 		"assets/tiles/middle.xpm"
-# define WATER_PATH	"assets/tiles/water.xpm"
-# define GRASS_TCL 	"assets/tiles/top_corner_left.xpm"
-# define GRASS_TCR 	"assets/tiles/top_corner_right.xpm"
-# define GRASS_BCL 	"assets/tiles/bottom_corner_left.xpm"
-# define GRASS_BCR 	"assets/tiles/bottom_corner_right.xpm"
-# define GRASS_TM 	"assets/tiles/top_middle.xpm"
-# define GRASS_BM 	"assets/tiles/bottom_middle.xpm"
-# define GRASS_ML 	"assets/tiles/middle_right.xpm"
-# define GRASS_MR 	"assets/tiles/middle_left.xpm"
-# define OBSTACLE_PATH 	"assets/tiles/tree.xpm"
+# define GRASS "assets/tiles/middle.xpm"
+# define WATER_PATH "assets/tiles/water.xpm"
+# define GRASS_TCL "assets/tiles/top_corner_left.xpm"
+# define GRASS_TCR "assets/tiles/top_corner_right.xpm"
+# define GRASS_BCL "assets/tiles/bottom_corner_left.xpm"
+# define GRASS_BCR "assets/tiles/bottom_corner_right.xpm"
+# define GRASS_TM "assets/tiles/top_middle.xpm"
+# define GRASS_BM "assets/tiles/bottom_middle.xpm"
+# define GRASS_ML "assets/tiles/middle_left.xpm"
+# define GRASS_MR "assets/tiles/middle_right.xpm"
+# define OBSTACLE_PATH "assets/tiles/tree.xpm"
+# define PLAYER_PATH "assets/tiles/pawn_yellow.xpm"
 
 #endif
