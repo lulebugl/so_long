@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 13:00:14 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/15 21:19:44 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/15 21:23:40 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ t_texture *load_texture(void *mlx, char *path)
     t_texture *tex;
     int     tmp;
 
-	new_
     tex = malloc(sizeof(t_texture));
     if (!tex)
         return (NULL);
