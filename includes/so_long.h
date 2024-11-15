@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:33:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/15 19:31:47 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/15 21:12:45 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
-# include "../minilibx-linux/mlx_int.h"
+// # include "../minilibx-linux/mlx_int.h"
 # include "assets.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
@@ -44,6 +44,8 @@
 # define YELLOW "\033[0;33m"
 # define RESET "\033[0;37m"
 
+#define TRANSPARENCY_COLOR 0xFF000000
+
 # define TILE_SIZE 64
 
 typedef enum e_map_element
@@ -63,31 +65,51 @@ typedef struct s_position
 	int		y;
 }			t_pos;
 
-typedef enum e_tile_type {
- //   GRASS_SINGLE = 0,
-    GRASS_TOP = 1,
-    GRASS_RIGHT = 2,
-    GRASS_BOTTOM = 3,
-    GRASS_LEFT = 4,
-    GRASS_TOP_RIGHT = 5,
-    GRASS_BOTTOM_RIGHT = 6,
-    GRASS_BOTTOM_LEFT = 7,
-    GRASS_TOP_LEFT = 8,
-    // GRASS_HORIZONTAL = 9,
-    // GRASS_VERTICAL = 10,
-    GRASS_ALL = 11
-} t_tile_type;
+typedef enum e_texture_type {
+    TEX_GRASS_ALL,
+    TEX_GRASS_TOP,
+    TEX_GRASS_RIGHT,
+    TEX_GRASS_BOTTOM,
+    TEX_GRASS_LEFT,
+    TEX_GRASS_TOP_RIGHT,
+    TEX_GRASS_BOTTOM_RIGHT,
+    TEX_GRASS_BOTTOM_LEFT,
+    TEX_GRASS_TOP_LEFT,
+    TEX_OBSTACLE,
+    TEX_COLLECTIBLE,
+    TEX_PLAYER,
+    TEX_EXIT,
+    TEX_WATER,
+    TEX_COUNT  // Keep track of total texture count
+} t_texture_type;
 
-typedef struct s_textures
-{
-    void    *empty[12];
-    void    *empty_tcl;
-    void    *obstacle;
-    void    *collectible;
-    void    *player;
-    void    *exit;
-    void    *water;
-}   t_textures;
+// typedef struct s_textures
+// {
+//     void    *empty[12];
+//     void    *empty_tcl;
+//     void    *obstacle;
+//     void    *collectible;
+//     void    *player;
+//     void    *exit;
+//     void    *water;
+// }   t_textures;
+
+typedef struct s_img {
+    void    *img;
+    char    *addr;
+    int     bits_per_pixel;
+    int     line_length;
+    int     endian;
+    int     width;
+    int     height;
+} 	t_img;
+
+typedef struct s_texture {
+    t_img   img;
+    int     *data;
+    int     width;
+    int     height;
+} t_texture;
 
 typedef struct s_map
 {
@@ -101,14 +123,15 @@ typedef struct s_map
 
 typedef struct s_data
 {
-	void	*mlx;
-	void	*win;
-	t_textures	textures;
-	int		max_row;
-	int		max_col;
-	char	*err_msg;
-	t_map	*map;
-}			t_data;
+    void        *mlx;
+    void        *win;
+    t_img       img;        // Main rendering image
+    t_texture   *textures[20];  // Array of textures
+    int         max_row;
+    int         max_col;
+    char        *err_msg;
+    t_map       *map;
+}               t_data;
 
 // parsing
 int			parse_arguments(int ac, char **av, t_data *data);
@@ -136,8 +159,8 @@ void	launch_game(t_data *data);
 
 // render
 void    load_textures(t_data *data);
-void    *get_texture_for_element(t_data *data, int element, int x, int y);
-
+t_texture    *get_texture_for_element(t_data *data, int element, int x, int y);
+void    draw_texture(t_img *img, t_texture *tex, int start_x, int start_y);
 
 
 // utils.c

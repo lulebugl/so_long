@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 19:23:41 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/15 16:42:59 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/15 20:32:27 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	debug_print(t_data *data, char *location)
 	ft_printf("Max Col: %d\n", data->max_col);
 	ft_printf("MLX Pointer: %p\n", data->mlx);
 	ft_printf("Window Pointer: %p\n", data->win);
-	if (data->err_msg)
-		ft_printf("\n=== Error Message ===\n%s\n", data->err_msg);
+	// if (data->err_msg)
+	// 	ft_printf("\n=== Error Message ===\n%s\n", data->err_msg);
 	if (data->map)
 	{
 		ft_printf("\n=== Map Info ===\n");
