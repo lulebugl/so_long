@@ -6,11 +6,11 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:45:07 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/12 17:14:24 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/15 15:03:17 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../../includes/so_long.h"
 
 void free_matrix(int **matrix, int i)
 {
@@ -38,8 +38,6 @@ static int	fill_matrix_row(int *row, char *tab_row, t_data *data, int posx)
 		{
 			data->map->player.x = posx;
 			data->map->player.y = j;
-			// printf("player x: %d\n", data->map->player.x);
-			// printf("player y: %d\n", data->map->player.y);
 			row[j] = PLAYER;
 		}
 		else if (tab_row[j] == 'C')
@@ -48,7 +46,9 @@ static int	fill_matrix_row(int *row, char *tab_row, t_data *data, int posx)
 			row[j] = COLLECTIBLE;
 		}
 		else if (tab_row[j] == '1')
-			row[j] = OBSTACLE;
+			row[j] = WALL;
+		else if (tab_row[j] == WATER)
+			row[j] = WATER;
 		else if (tab_row[j] == 'E')
 		{
 			data->map->exit.x = posx;
@@ -56,7 +56,7 @@ static int	fill_matrix_row(int *row, char *tab_row, t_data *data, int posx)
 			row[j] = EXIT;
 		}
 		else
-			row[j] = 0;
+			row[j] = EMPTY;
 		j++;
 	}
 	return (0);
@@ -68,6 +68,7 @@ int	create_matrix(char *map, char **tab, t_data *data)
 	int	**matrix;
 
 	i = -1;
+	
 	matrix = (int **)malloc(sizeof(int *) * data->map->row);
 	if (!matrix)
 		return (set_err_msg(MALLOC_ERROR, data), -1);

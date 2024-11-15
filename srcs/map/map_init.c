@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:40:43 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/13 14:02:28 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/15 15:00:40 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,24 +45,30 @@ static int	store_map(int fd, t_data *data, char **map)
 int	map_closed_by_obstacle(char **tab, t_data *data)
 {
 	int	i;
-	int	len;
 
 	i = 0;
 	while (tab[0][i])
-		if (tab[0][i++] != OBSTACLE + '0')
+	{
+		if (!is_obstacle(tab[0][i]))
 			return (data->err_msg = MAP_NOT_CLOSED, 0);
-	i = -1;
+		tab[0][i++] = WATER;
+	}
+	i = 0;
 	while (++i < data->map->row - 1)
 	{
-		if ((tab[i][0] != OBSTACLE + '0') || (tab[i][data->map->col
-				- 1] != OBSTACLE + '0'))
+		if (!is_obstacle(tab[i][0]) ||
+			!is_obstacle(tab[i][data->map->col- 1]))
 			return (data->err_msg = MAP_NOT_CLOSED, 0);
-		// replace OBS by water
+		tab[i][0] = WATER;
+		tab[i][data->map->col - 1] = WATER;
 	}
 	i = 0;
 	while (tab[data->map->row - 1][i])
-		if (tab[data->map->row - 1][i++] != OBSTACLE + '0')
+	{
+		if (!is_obstacle(tab[data->map->row - 1][i]))
 			return (data->err_msg = MAP_NOT_CLOSED, 0);
+		tab[data->map->row - 1][i++] = WATER;
+	}
 	return (1);
 }
 

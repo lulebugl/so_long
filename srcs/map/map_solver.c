@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 20:45:57 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/12 16:57:49 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/13 16:07:35 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,19 @@ static int	**create_visited_matrix(t_data *data)
 	}
 	return (visited);
 }
-static bool	is_valid_position(t_data *data, t_pos pos)
+
+static inline bool	is_valid_position(t_data *data, t_pos pos)
 {
 	return (pos.x >= 0 && pos.x < data->map->row && pos.y >= 0
-		&& pos.y < data->map->col
-		&& data->map->matrix[pos.x][pos.y] != OBSTACLE);
+		&& pos.y < data->map->col);
 }
 
 static void	flood_fill(t_data *data, int **visited, t_pos pos, int *collectible)
 {
 	if (!is_valid_position(data, pos) || visited[pos.x][pos.y])
 		return ;
+	if (is_obstacle(data->map->matrix[pos.x][pos.y]))
+        return ;
 	visited[pos.x][pos.y] = 1;
 	if (data->map->matrix[pos.x][pos.y] == COLLECTIBLE)
 		(*collectible)++;
@@ -67,7 +69,7 @@ int	is_map_solvable(t_data *data)
 	// ft_printf("\nNeed to find %d collectibles\n", data->map->nb_collectible);
 	// ft_printf("Starting at position (%d, %d)\n", data->map->player.y,
 	// 	data->map->player.x);
-	
+	//debug_print(data, 0);
 	flood_fill(data, visited, data->map->player, &collectibles);
 	
 	// print_matrix(visited, data);

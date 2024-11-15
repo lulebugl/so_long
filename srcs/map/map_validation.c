@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:28:23 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/12 17:14:16 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/15 14:35:58 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ char	**validate_map_size(char *map, t_data *data)
 	int		i;
 
 	i = -1;
+
 	tab = ft_split(map, '\n');
 	if (!tab)
 		return (set_err_msg(MALLOC_ERROR, data), NULL);
