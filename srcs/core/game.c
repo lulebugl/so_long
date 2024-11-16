@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 16:12:31 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/16 18:08:47 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/16 20:28:38 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,18 @@ void    render_frame(t_data *data)
         {
 			tex = NULL;
 			if (data->map->matrix[y][x] != WATER && data->map->matrix[y][x] != EMPTY)
-            	tex = get_texture_for_element(data, data->map->matrix[y][x], y, x);
+				tex = get_texture_for_element(data, data->map->matrix[y][x], y, x);
 			if (tex)
 			{
-				if (data->map->matrix[y][x] == WALL)
+				// printf("y - 1: %c\n", data->map->matrix[y - 1][x]);
+				// printf("elem : %c\n", data->map->matrix[y][x]);
+				if (data->map->matrix[y - 1][x] && data->map->matrix[y - 1][x] == COLLECTIBLE &&
+					data->map->matrix[y][x] == WALL)
 				{
-               		draw_texture(&data->img, tex, x * TILE_SIZE, y * TILE_SIZE);
+					tex = get_texture_for_element(data, TRUNK, y, x);
+					printf("test\n");
 				}
-				else
-               		draw_texture(&data->img, tex, x * TILE_SIZE, y * TILE_SIZE);
+               	draw_texture(&data->img, tex, x * TILE_SIZE, y * TILE_SIZE);
 			}
         }
     }

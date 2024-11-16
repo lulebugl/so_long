@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:33:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/16 18:04:09 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/16 20:15:37 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef enum e_map_element
 	EXIT = (int)'E',
 	WATER = (int)'W',
 	TREE = (int)'T',
+	TRUNK = (int)'[',
 }				t_map_element;
 
 typedef struct s_position
@@ -77,11 +78,12 @@ typedef enum e_texture_type
 	TEX_GRASS_BOTTOM_LEFT,
 	TEX_GRASS_TOP_LEFT,
 	TEX_OBSTACLE,
+	TEX_TRUNK,
 	TEX_COLLECTIBLE,
 	TEX_PLAYER,
 	TEX_EXIT,
 	TEX_WATER,
-	TEX_COUNT
+	TEX_COUNT,
 }				t_texture_type;
 
 typedef struct s_img
