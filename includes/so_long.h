@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:33:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/15 21:12:45 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/16 18:04:09 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define YELLOW "\033[0;33m"
 # define RESET "\033[0;37m"
 
-#define TRANSPARENCY_COLOR 0xFF000000
+# define TRANSPARENCY_COLOR 0xFF000000
 
 # define TILE_SIZE 64
 
@@ -57,117 +57,112 @@ typedef enum e_map_element
 	EXIT = (int)'E',
 	WATER = (int)'W',
 	TREE = (int)'T',
-}			t_map_element;
+}				t_map_element;
 
 typedef struct s_position
 {
-	int		x;
-	int		y;
-}			t_pos;
+	int			x;
+	int			y;
+}				t_pos;
 
-typedef enum e_texture_type {
-    TEX_GRASS_ALL,
-    TEX_GRASS_TOP,
-    TEX_GRASS_RIGHT,
-    TEX_GRASS_BOTTOM,
-    TEX_GRASS_LEFT,
-    TEX_GRASS_TOP_RIGHT,
-    TEX_GRASS_BOTTOM_RIGHT,
-    TEX_GRASS_BOTTOM_LEFT,
-    TEX_GRASS_TOP_LEFT,
-    TEX_OBSTACLE,
-    TEX_COLLECTIBLE,
-    TEX_PLAYER,
-    TEX_EXIT,
-    TEX_WATER,
-    TEX_COUNT  // Keep track of total texture count
-} t_texture_type;
+typedef enum e_texture_type
+{
+	TEX_GRASS_ALL,
+	TEX_GRASS_TOP,
+	TEX_GRASS_RIGHT,
+	TEX_GRASS_BOTTOM,
+	TEX_GRASS_LEFT,
+	TEX_GRASS_TOP_RIGHT,
+	TEX_GRASS_BOTTOM_RIGHT,
+	TEX_GRASS_BOTTOM_LEFT,
+	TEX_GRASS_TOP_LEFT,
+	TEX_OBSTACLE,
+	TEX_COLLECTIBLE,
+	TEX_PLAYER,
+	TEX_EXIT,
+	TEX_WATER,
+	TEX_COUNT
+}				t_texture_type;
 
-// typedef struct s_textures
-// {
-//     void    *empty[12];
-//     void    *empty_tcl;
-//     void    *obstacle;
-//     void    *collectible;
-//     void    *player;
-//     void    *exit;
-//     void    *water;
-// }   t_textures;
+typedef struct s_img
+{
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	int			width;
+	int			height;
+}				t_img;
 
-typedef struct s_img {
-    void    *img;
-    char    *addr;
-    int     bits_per_pixel;
-    int     line_length;
-    int     endian;
-    int     width;
-    int     height;
-} 	t_img;
-
-typedef struct s_texture {
-    t_img   img;
-    int     *data;
-    int     width;
-    int     height;
-} t_texture;
+typedef struct s_texture
+{
+	t_img		img;
+	int			*data;
+	int			width;
+	int			height;
+	int 		offset_x;
+	int 		offset_y;
+}				t_texture;
 
 typedef struct s_map
 {
-	int		**matrix;
-	int		row;
-	int		col;
-	int		nb_collectible;
-	t_pos	player;
-	t_pos	exit;
-}			t_map;
+	int			**matrix;
+	int			row;
+	int			col;
+	int			nb_collectible;
+	t_pos		player;
+	t_pos		exit;
+}				t_map;
 
 typedef struct s_data
 {
-    void        *mlx;
-    void        *win;
-    t_img       img;        // Main rendering image
-    t_texture   *textures[20];  // Array of textures
-    int         max_row;
-    int         max_col;
-    char        *err_msg;
-    t_map       *map;
-}               t_data;
+	void		*mlx;
+	void		*win;
+	t_img img; // Main rendering image
+	t_texture	*textures[TEX_COUNT];
+	int			max_row;
+	int			max_col;
+	char		*err_msg;
+	t_map		*map;
+}				t_data;
 
 // parsing
-int			parse_arguments(int ac, char **av, t_data *data);
+int				parse_arguments(int ac, char **av, t_data *data);
 
 // Events.c
-int			on_keypress(int keysym, t_data *data);
-int			on_destroy(t_data *data);
+int				on_keypress(int keysym, t_data *data);
+int				on_destroy(t_data *data);
 
 // error.c
-void		display_err_and_exit(const char *msg, t_data *data);
-void		set_err_msg(char *msg, t_data *data);
-
+void			display_err_and_exit(const char *msg, t_data *data);
+void			set_err_msg(char *msg, t_data *data);
 
 // map
-int			read_map(char *filename, t_data *data);
-int			validate_map_content(char *map, t_data *data);
-char		**validate_map_size(char *map, t_data *data);
-int			is_map_solvable(t_data *data);
+int				read_map(char *filename, t_data *data);
+int				validate_map_content(char *map, t_data *data);
+char			**validate_map_size(char *map, t_data *data);
+int				is_map_solvable(t_data *data);
 
-int			create_matrix(char *map, char **tab, t_data *data);
+int				create_matrix(char *map, char **tab, t_data *data);
 
 // game.c
-void	launch_game(t_data *data);
-
+void			launch_game(t_data *data);
 
 // render
-void    load_textures(t_data *data);
-t_texture    *get_texture_for_element(t_data *data, int element, int x, int y);
-void    draw_texture(t_img *img, t_texture *tex, int start_x, int start_y);
-
+void			load_textures(t_data *data);
+t_texture		*get_texture_for_element(t_data *data, int element, int x,
+					int y);
+void			draw_texture(t_img *img, t_texture *tex, int start_x,
+					int start_y);
+void    render_grass(t_data *data);
+void    render_water(t_data *data);
 
 // utils.c
-void		free_matrix(int **matrix, int i);
-void		close_and_free(void *str, int fd);
-void		print_matrix(int **matrix, t_data *data);
-void		debug_print(t_data *data, char *location);
-int		 	is_obstacle(t_map_element element);
+void			free_matrix(int **matrix, int i);
+void			close_and_free(void *str, int fd);
+void			print_matrix(int **matrix, t_data *data);
+void			debug_print(t_data *data, char *location);
+int				is_obstacle(t_map_element element);
 
 #endif

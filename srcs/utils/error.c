@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 17:07:39 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/15 20:35:58 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/16 17:03:46 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,25 @@ static void clean_map(t_map *map)
 	free(map);
 }
 
+void	cleanup_textures(t_data *data)
+{
+	int i;
+
+	i = -1;
+	while (++i < TEX_COUNT)
+	{
+		if (data->textures[i])
+		{
+			if (data->textures[i]->data)
+				free(data->textures[i]->data);
+			free(data->textures[i]);
+			data->textures[i] = NULL;
+		}
+	}
+}
 static void clean_up(t_data *data)
 {
+	cleanup_textures(data);
 	if (data->win)
 		mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
@@ -39,6 +56,7 @@ int on_destroy(t_data *data)
 	exit(0);
 	return (0);
 }
+
 
 void 	display_err_and_exit(const char *msg, t_data *data)
 {
