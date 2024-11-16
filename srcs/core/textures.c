@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 13:00:14 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/16 17:58:49 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/16 18:49:36 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	load_textures(t_data *data)
 	data->textures[TEX_WATER] = load_texture(data->mlx, WATER_PATH);
 	data->textures[TEX_COLLECTIBLE] = load_texture(data->mlx, GRASS);
 	data->textures[TEX_PLAYER] = load_texture(data->mlx, PLAYER_PATH);
-	data->textures[TEX_EXIT] = load_texture(data->mlx, GRASS);
+	data->textures[TEX_EXIT] = load_texture(data->mlx, EXIT_PATH);
 	while (++i < TEX_COUNT)
 		if (!data->textures[i])
 			display_err_and_exit("Failed to load textures", data);
@@ -133,6 +133,6 @@ t_texture	*get_texture_for_element(t_data *data, int element, int x, int y)
 		return (data->textures[TEX_EXIT]);
 	if (element == WATER)
 		return (data->textures[TEX_WATER]);
-	return (data->textures[TEX_GRASS_ALL]); // Default fallback
+	return (data->textures[TEX_GRASS_ALL]);
 }
 
