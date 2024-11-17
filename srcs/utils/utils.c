@@ -6,12 +6,16 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 19:23:41 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/15 20:32:27 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/17 19:15:16 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
+void 	print_player_pos(t_pos player)
+{
+	ft_printf("Player Position: (%d, %d)\n", player.x, player.y);
+}
 void	debug_print(t_data *data, char *location)
 {
 	if (!data)
@@ -37,6 +41,9 @@ void	debug_print(t_data *data, char *location)
 			data->map->player.y);
 		ft_printf("Exit Position: (%d, %d)\n", data->map->exit.x,
 			data->map->exit.y);
+		ft_printf("\n=============Matrix==========\n\n");
+		print_matrix(data->map->matrix, data);
 	}
 	ft_printf("==============================\n\n");
+
 }

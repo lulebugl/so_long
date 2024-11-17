@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 13:00:14 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/16 20:16:10 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/17 19:04:40 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	load_textures(t_data *data)
 	data->textures[TEX_GRASS_BOTTOM_RIGHT] = load_texture(data->mlx, GRASS_BCR);
 	data->textures[TEX_GRASS_BOTTOM_LEFT] = load_texture(data->mlx, GRASS_BCL);
 	data->textures[TEX_GRASS_TOP_LEFT] = load_texture(data->mlx, GRASS_TCL);
-	data->textures[TEX_OBSTACLE] = load_texture(data->mlx, OBSTACLE_PATH);
+	data->textures[TEX_TREE] = load_texture(data->mlx, TREE_PATH);
 	data->textures[TEX_WATER] = load_texture(data->mlx, WATER_PATH);
 	data->textures[TEX_COLLECTIBLE] = load_texture(data->mlx, COLLECTIBLE_PATH);
 	data->textures[TEX_TRUNK] = load_texture(data->mlx, TREE_TRUNK_PATH);
@@ -124,8 +124,8 @@ t_texture	*get_texture_for_element(t_data *data, int element, int x, int y)
 		tex_type = check_adjacent(data, x, y);
 		return (data->textures[tex_type]);
 	}
-	if (element == WALL)
-		return (data->textures[TEX_OBSTACLE]);
+	if (element == TREE)
+		return (data->textures[TEX_TREE]);
 	if (element == TRUNK)
 		return (data->textures[TEX_TRUNK]);
 	if (element == COLLECTIBLE)

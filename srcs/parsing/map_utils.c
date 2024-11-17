@@ -6,15 +6,16 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:49:54 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/15 15:00:58 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/17 19:06:59 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-int is_obstacle(t_map_element element)
+int	is_obstacle(t_map_element element)
 {
-    return (element == WALL || element == WATER || element == TREE);
+	return (element == OBSTACLE || element == WATER || element == TREE
+		|| element == TRUNK);
 }
 
 void	close_and_free(void *str, int fd)
@@ -36,5 +37,4 @@ void	print_matrix(int **matrix, t_data *data)
 			ft_printf("%c", (char)matrix[i][j]);
 		ft_printf("\n");
 	}
-
 }

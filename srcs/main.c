@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 21:00:32 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/15 20:28:34 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/17 18:37:49 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,5 @@ int main(int ac, char **av)
 	if (!is_map_solvable(&data))
 		display_err_and_exit(NULL, &data);
 	launch_game(&data);
-
-
     return (0);
 }

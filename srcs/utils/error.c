@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 17:07:39 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/16 17:03:46 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/17 17:12:22 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	cleanup_textures(t_data *data)
 		}
 	}
 }
-static void clean_up(t_data *data)
+void clean_up(t_data *data)
 {
 	cleanup_textures(data);
 	if (data->win)
@@ -48,13 +48,6 @@ static void clean_up(t_data *data)
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
 	clean_map(data->map);
-}
-
-int on_destroy(t_data *data)
-{
-	clean_up(data);
-	exit(0);
-	return (0);
 }
 
 

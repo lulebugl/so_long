@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:33:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/16 20:15:37 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/17 19:43:57 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@
 typedef enum e_map_element
 {
 	EMPTY = (int)'0',
-	WALL = (int)'1',
+	OBSTACLE = (int)'1',
 	COLLECTIBLE = (int)'C',
 	PLAYER = (int)'P',
 	EXIT = (int)'E',
 	WATER = (int)'W',
-	TREE = (int)'T',
+	TREE = (int)'1',
 	TRUNK = (int)'[',
 }				t_map_element;
 
@@ -77,7 +77,7 @@ typedef enum e_texture_type
 	TEX_GRASS_BOTTOM_RIGHT,
 	TEX_GRASS_BOTTOM_LEFT,
 	TEX_GRASS_TOP_LEFT,
-	TEX_OBSTACLE,
+	TEX_TREE,
 	TEX_TRUNK,
 	TEX_COLLECTIBLE,
 	TEX_PLAYER,
@@ -103,8 +103,8 @@ typedef struct s_texture
 	int			*data;
 	int			width;
 	int			height;
-	int 		offset_x;
-	int 		offset_y;
+	int			offset_x;
+	int			offset_y;
 }				t_texture;
 
 typedef struct s_map
@@ -114,6 +114,7 @@ typedef struct s_map
 	int			col;
 	int			nb_collectible;
 	t_pos		player;
+	t_pos		player_prev;
 	t_pos		exit;
 }				t_map;
 
@@ -157,14 +158,20 @@ t_texture		*get_texture_for_element(t_data *data, int element, int x,
 					int y);
 void			draw_texture(t_img *img, t_texture *tex, int start_x,
 					int start_y);
-void    render_grass(t_data *data);
-void    render_water(t_data *data);
 
 // utils.c
 void			free_matrix(int **matrix, int i);
 void			close_and_free(void *str, int fd);
 void			print_matrix(int **matrix, t_data *data);
 void			debug_print(t_data *data, char *location);
+void			print_player_pos(t_pos player);
+
 int				is_obstacle(t_map_element element);
+
+void			clean_up(t_data *data);
+
+void			render_grass(t_data *data);
+void			render_water(t_data *data);
+int				render_map(t_data *data);
 
 #endif

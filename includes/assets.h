@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:09:00 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/16 19:59:00 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/17 19:04:12 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define GRASS_BM "assets/tiles/bottom_middle.xpm"
 # define GRASS_ML "assets/tiles/middle_left.xpm"
 # define GRASS_MR "assets/tiles/middle_right.xpm"
-# define OBSTACLE_PATH "assets/tiles/tree.xpm"
+# define TREE_PATH "assets/tiles/tree.xpm"
 # define COLLECTIBLE_PATH "assets/bone.xpm"
 # define PLAYER_PATH "assets/tiles/pawn_yellow.xpm"
 # define EXIT_PATH "assets/exit.xpm"
