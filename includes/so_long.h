@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:33:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/17 19:43:57 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/17 22:24:22 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ void			launch_game(t_data *data);
 
 // render
 void			load_textures(t_data *data);
-t_texture		*get_texture_for_element(t_data *data, int element, int x,
+t_texture		*get_texture_for_elem(t_data *data, int element, int x,
 					int y);
 void			draw_texture(t_img *img, t_texture *tex, int start_x,
 					int start_y);
@@ -173,5 +173,6 @@ void			clean_up(t_data *data);
 void			render_grass(t_data *data);
 void			render_water(t_data *data);
 int				render_map(t_data *data);
+void			move_player(const char *direction, t_data *data);
 
 #endif

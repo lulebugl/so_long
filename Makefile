@@ -6,7 +6,7 @@
 #    By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/07 16:00:50 by llebugle          #+#    #+#              #
-#    Updated: 2024/11/16 18:03:03 by llebugle         ###   ########.fr        #
+#    Updated: 2024/11/17 20:22:59 by llebugle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRCS 	= main.c 					\
 			core/textures.c				\
 			core/game.c				\
 			core/draw.c				\
+			events/player.c				\
 			parsing/parsing.c				\
 			parsing/matrix.c			\
 			parsing/map_utils.c		\

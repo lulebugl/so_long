@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 13:00:14 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/17 19:04:40 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/17 22:24:22 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ static t_texture_type check_adjacent(t_data *data, int x, int y)
     return (TEX_GRASS_ALL);
 }
 
-t_texture	*get_texture_for_element(t_data *data, int element, int x, int y)
+t_texture	*get_texture_for_elem(t_data *data, int element, int x, int y)
 {
 	t_texture_type	tex_type;
 

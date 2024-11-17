@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 17:07:39 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/17 17:12:22 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/17 22:51:48 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	cleanup_textures(t_data *data)
 	int i;
 
 	i = -1;
+	if (!data->textures || !data->textures[0])
+		return ;
 	while (++i < TEX_COUNT)
 	{
 		if (data->textures[i])

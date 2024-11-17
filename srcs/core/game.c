@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 16:12:31 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/17 19:44:56 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/17 22:24:22 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,20 +53,20 @@ void	launch_game(t_data *data)
 // 	print_matrix(matrix, data);
 // 	print_player_pos(player);
 // 	printf("x -> %d\n", player.x);
-// 	tex = get_texture_for_element(data, PLAYER, 0, 0);
+// 	tex = get_texture_for_elem(data, PLAYER, 0, 0);
 // 	if (tex)
 // 		draw_texture(&data->img, tex, player.y * TILE_SIZE, player.x
 // 			* TILE_SIZE);
 // 	if (player.x + 1 < data->map->row && matrix[player.x + 1][player.y] == TREE)
 // 	{
-// 		tex = get_texture_for_element(data, TREE, 0, 0);
+// 		tex = get_texture_for_elem(data, TREE, 0, 0);
 // 		if (tex)
 // 			draw_texture(&data->img, tex, player.y * TILE_SIZE, (player.x + 1)
 // 				* TILE_SIZE);
 // 	}
 // 	if (player.x + 2 < data->map->row && matrix[player.x + 2][player.y] == TREE)
 // 	{
-// 		tex = get_texture_for_element(data, TREE, 0, 0);
+// 		tex = get_texture_for_elem(data, TREE, 0, 0);
 // 		if (tex)
 // 			draw_texture(&data->img, tex, player.y * TILE_SIZE, (player.x + 2)
 // 				* TILE_SIZE);
@@ -91,7 +91,7 @@ void	launch_game(t_data *data)
 // 			tex = NULL;
 // 			if (data->map->matrix[y][x] != WATER
 //				&& data->map->matrix[y][x] != EMPTY)
-//             	tex = get_texture_for_element(data, data->map->matrix[y][x], y,
+//             	tex = get_texture_for_elem(data, data->map->matrix[y][x], y,
 //			x);
 // 			if (tex)
 // 			{
