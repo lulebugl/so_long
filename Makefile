@@ -6,7 +6,7 @@
 #    By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/07 16:00:50 by llebugle          #+#    #+#              #
-#    Updated: 2024/11/17 20:22:59 by llebugle         ###   ########.fr        #
+#    Updated: 2024/11/18 17:40:50 by llebugle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,12 +32,13 @@ SRCS_DIR = srcs
 OBJS	 = $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 
 SRCS 	= main.c 					\
-			events.c 				\
+			core/events.c 				\
 			core/render.c				\
 			core/textures.c				\
 			core/game.c				\
 			core/draw.c				\
-			events/player.c				\
+			core/autotiling.c				\
+			core/move_player.c				\
 			parsing/parsing.c				\
 			parsing/matrix.c			\
 			parsing/map_utils.c		\

@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 21:00:32 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/18 16:27:36 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/18 16:50:57 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	data_init(t_data *data)
 	data->map->nb_collectible = 0;
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_data	data;
+	t_data data;
 
 	data.mlx = mlx_init();
 	if (!data.mlx)
@@ -41,5 +41,5 @@ int main(int ac, char **av)
 	if (!is_map_solvable(&data))
 		display_err_and_exit(NULL, &data);
 	launch_game(&data);
-    return (0);
+	return (0);
 }

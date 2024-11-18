@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 14:47:46 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/17 22:44:32 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:08:05 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,18 +82,6 @@ int	render_map(t_data *data)
 		while (++x < data->map->col)
 		{
 			tex = NULL;
-			// if (data->map->matrix[y][x] == PLAYER
-			// 	&& (data->map->exit.x == data->map->player.x)
-			// 	&& (data->map->exit.y == data->map->player.y))
-			// {
-			// 	tex = get_texture_for_elem(data, EXIT, y, x);
-			// 	if (tex)
-			// 		draw_texture(&data->img, tex, x * TILE_SIZE, y * TILE_SIZE);
-			// 	tex = get_texture_for_elem(data, PLAYER, y, x);
-			// 	if (tex)
-			// 		draw_texture(&data->img, tex, x * TILE_SIZE, y * TILE_SIZE);
-			// 	continue ;
-			// }
 			if (data->map->matrix[y][x] != WATER
 				&& data->map->matrix[y][x] != EMPTY)
 				tex = get_texture_for_elem(data, data->map->matrix[y][x], y, x);
@@ -101,7 +89,6 @@ int	render_map(t_data *data)
 				draw_texture(&data->img, tex, x * TILE_SIZE, y * TILE_SIZE);
 		}
 	}
-	// debug_print(data, 0);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 	return (0);
 }

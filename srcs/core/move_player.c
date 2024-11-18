@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 22:42:14 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/18 16:28:14 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/18 16:52:12 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	move_player(const char *direction, t_data *data)
 	if (is_valid_move(data, next))
 	{
 		data->nb_moves++;
-		ft_printf("nb of moves -> %d\n", data->nb_moves);
+		ft_printf("number of moves -> %d\n", data->nb_moves);
 		if (map->matrix[next.x][next.y] == COLLECTIBLE)
 			map->nb_collectible--;
 		update_player_position(data, next);

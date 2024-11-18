@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:33:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/18 16:22:37 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:48:46 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,13 @@ typedef enum e_texture_type
 	TEX_GRASS_BOTTOM_RIGHT,
 	TEX_GRASS_BOTTOM_LEFT,
 	TEX_GRASS_TOP_LEFT,
+	TEX_GRASS_HR,
+	TEX_GRASS_HL,
+	TEX_GRASS_HM,
+	TEX_GRASS_VT,
+	TEX_GRASS_VB,
+	TEX_GRASS_VM,
+	TEX_GRASS_SINGLE,
 	TEX_TREE,
 	TEX_TRUNK,
 	TEX_COLLECTIBLE,
@@ -122,7 +129,7 @@ typedef struct s_data
 {
 	void		*mlx;
 	void		*win;
-	t_img 		img; // Main rendering image
+	t_img 		img;
 	t_texture	*textures[TEX_COUNT];
 	int			max_row;
 	int			max_col;
@@ -161,6 +168,7 @@ void			draw_texture(t_img *img, t_texture *tex, int start_x,
 					int start_y);
 
 // utils.c
+t_texture_type	check_adjacent(t_data *data, int x, int y);
 void			free_matrix(int **matrix, int i);
 void			close_and_free(void *str, int fd);
 void			print_matrix(int **matrix, t_data *data);
@@ -175,5 +183,6 @@ void			render_grass(t_data *data);
 void			render_water(t_data *data);
 int				render_map(t_data *data);
 void			move_player(const char *direction, t_data *data);
+
 
 #endif

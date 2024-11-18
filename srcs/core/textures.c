@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 13:00:14 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/17 22:24:22 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:50:47 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,34 +22,33 @@ t_texture	*load_texture(void *mlx, char *path)
 		return (NULL);
 	tex->img.img = mlx_xpm_file_to_image(mlx, path, &tex->width, &tex->height);
 	if (!tex->img.img)
-	{
-		free(tex);
-		return (NULL);
-	}
-	
-	//Calculate offsets based on texture size vs tile size
-    tex->offset_x = (TILE_SIZE - tex->width) / 2;  // Center horizontally
-    tex->offset_y = TILE_SIZE - tex->height;       // Align to bottom of tile
-
-    // For the tree specifically, adjust vertical position
-    if (tex->height > TILE_SIZE)
-        tex->offset_y = -(tex->height - TILE_SIZE);  /* Move up by the excess height*/
-
+		return (free(tex), NULL);
+	tex->offset_x = (TILE_SIZE - tex->width) / 2;
+	tex->offset_y = TILE_SIZE - tex->height;
+	if (tex->height > TILE_SIZE)
+		tex->offset_y = -(tex->height - TILE_SIZE);
 	tex->img.addr = mlx_get_data_addr(tex->img.img, &tex->img.bits_per_pixel,
 			&tex->img.line_length, &tex->img.endian);
 	tex->data = (int *)malloc(sizeof(int) * (tex->width * tex->height));
 	if (!tex->data)
 	{
 		mlx_destroy_image(mlx, tex->img.img);
-		free(tex);
-		return (NULL);
+		return (free(tex), NULL);
 	}
-	// Copy pixel data
 	tmp = -1;
 	while (++tmp < tex->width * tex->height)
 		tex->data[tmp] = ((int *)tex->img.addr)[tmp];
-	mlx_destroy_image(mlx, tex->img.img);
-	return (tex);
+	return (mlx_destroy_image(mlx, tex->img.img), tex);
+}
+
+void	load_textures_others(t_data *data)
+{
+	data->textures[TEX_TREE] = load_texture(data->mlx, TREE_PATH);
+	data->textures[TEX_WATER] = load_texture(data->mlx, WATER_PATH);
+	data->textures[TEX_COLLECTIBLE] = load_texture(data->mlx, COLLECTIBLE_PATH);
+	data->textures[TEX_TRUNK] = load_texture(data->mlx, TREE_TRUNK_PATH);
+	data->textures[TEX_PLAYER] = load_texture(data->mlx, PLAYER_PATH);
+	data->textures[TEX_EXIT] = load_texture(data->mlx, EXIT_PATH);
 }
 
 void	load_textures(t_data *data)
@@ -67,52 +66,17 @@ void	load_textures(t_data *data)
 	data->textures[TEX_GRASS_BOTTOM_RIGHT] = load_texture(data->mlx, GRASS_BCR);
 	data->textures[TEX_GRASS_BOTTOM_LEFT] = load_texture(data->mlx, GRASS_BCL);
 	data->textures[TEX_GRASS_TOP_LEFT] = load_texture(data->mlx, GRASS_TCL);
-	data->textures[TEX_TREE] = load_texture(data->mlx, TREE_PATH);
-	data->textures[TEX_WATER] = load_texture(data->mlx, WATER_PATH);
-	data->textures[TEX_COLLECTIBLE] = load_texture(data->mlx, COLLECTIBLE_PATH);
-	data->textures[TEX_TRUNK] = load_texture(data->mlx, TREE_TRUNK_PATH);
-	data->textures[TEX_PLAYER] = load_texture(data->mlx, PLAYER_PATH);
-	data->textures[TEX_EXIT] = load_texture(data->mlx, EXIT_PATH);
+	data->textures[TEX_GRASS_HR] = load_texture(data->mlx, GRASS_HR);
+	data->textures[TEX_GRASS_HL] = load_texture(data->mlx, GRASS_HL);
+	data->textures[TEX_GRASS_HM] = load_texture(data->mlx, GRASS_HM);
+	data->textures[TEX_GRASS_VT] = load_texture(data->mlx, GRASS_VT);
+	data->textures[TEX_GRASS_VB] = load_texture(data->mlx, GRASS_VB);
+	data->textures[TEX_GRASS_VM] = load_texture(data->mlx, GRASS_VM);
+	data->textures[TEX_GRASS_SINGLE] = load_texture(data->mlx, GRASS_SINGLE);
+	load_textures_others(data);
 	while (++i < TEX_COUNT)
 		if (!data->textures[i])
 			display_err_and_exit("Failed to load textures", data);
-}
-
-static t_texture_type check_adjacent(t_data *data, int x, int y)
-{
-    int top = 0;
-    int right = 0;
-    int bottom = 0;
-    int left = 0;
-
-    if (x > 0)
-        top = (data->map->matrix[x - 1][y] == WATER);
-    if (y < data->map->col - 1)
-        right = (data->map->matrix[x][y + 1] == WATER);
-    if (x < data->map->row - 1)
-        bottom = (data->map->matrix[x + 1][y] == WATER);
-    if (y > 0)
-        left = (data->map->matrix[x][y - 1] == WATER);
-
-    if (top && left && !right && !bottom)
-        return (TEX_GRASS_TOP_LEFT);
-    if (top && right && !left && !bottom)
-        return (TEX_GRASS_TOP_RIGHT);
-    if (bottom && left && !right && !top)
-        return (TEX_GRASS_BOTTOM_LEFT);
-    if (bottom && right && !left && !top)
-        return (TEX_GRASS_BOTTOM_RIGHT);
-
-    if (top && !right && !bottom && !left)
-        return (TEX_GRASS_TOP);
-    if (!top && right && !bottom && !left)
-        return (TEX_GRASS_RIGHT);
-    if (!top && !right && bottom && !left)
-        return (TEX_GRASS_BOTTOM);
-    if (!top && !right && !bottom && left)
-        return (TEX_GRASS_LEFT);
-
-    return (TEX_GRASS_ALL);
 }
 
 t_texture	*get_texture_for_elem(t_data *data, int element, int x, int y)
@@ -138,4 +102,3 @@ t_texture	*get_texture_for_elem(t_data *data, int element, int x, int y)
 		return (data->textures[TEX_WATER]);
 	return (data->textures[TEX_GRASS_ALL]);
 }
-

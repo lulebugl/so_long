@@ -6,11 +6,11 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:16:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/18 16:25:46 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/18 16:54:06 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../../includes/so_long.h"
 
 int	on_destroy(t_data *data)
 {
@@ -43,7 +43,7 @@ void ft_victory(t_data *data)
 {
 	ft_printf(YELLOW);
 	ft_printf("==============================\n");
-	ft_printf("=          You win           =\n");
+	ft_printf("=          You win !         =\n");
 	ft_printf("==============================\n");
 	ft_printf(RESET);
 	clean_up(data);
