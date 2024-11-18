@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 21:00:32 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/17 22:50:54 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/18 16:27:36 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	data_init(t_data *data)
 {
 	data->max_col = 0;
 	data->max_row = 0;
+	data->nb_moves = 0;
 	data->err_msg = NULL;
 	data->win = NULL;
 	data->textures[0] = 0;

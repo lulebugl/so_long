@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:16:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/17 21:09:07 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/18 16:25:46 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,25 @@ char	*get_direction(int keysym)
 	return (0);
 }
 
+void ft_victory(t_data *data)
+{
+	ft_printf(YELLOW);
+	ft_printf("==============================\n");
+	ft_printf("=          You win           =\n");
+	ft_printf("==============================\n");
+	ft_printf(RESET);
+	clean_up(data);
+}
+
 int	on_keypress(int keysym, t_data *data)
 {
 	(void)data;
-	ft_printf("Pressed key: %d\n", keysym);
+	if ((data->map->exit.x == data->map->player.x)
+		&& (data->map->exit.y == data->map->player.y))
+	{
+		ft_victory(data);
+		exit(0);
+	}
 	if (keysym == XK_Escape)
 		on_destroy(data);
 	if (is_key_move(keysym))

@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:33:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/17 22:24:22 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/18 16:22:37 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,11 +122,12 @@ typedef struct s_data
 {
 	void		*mlx;
 	void		*win;
-	t_img img; // Main rendering image
+	t_img 		img; // Main rendering image
 	t_texture	*textures[TEX_COUNT];
 	int			max_row;
 	int			max_col;
 	char		*err_msg;
+	int			nb_moves;
 	t_map		*map;
 }				t_data;
 

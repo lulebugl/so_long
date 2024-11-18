@@ -6,18 +6,18 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 17:07:39 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/17 22:51:48 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/18 16:26:52 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-void set_err_msg(char *msg, t_data *data)
+void	set_err_msg(char *msg, t_data *data)
 {
 	data->err_msg = msg;
 }
 
-static void clean_map(t_map *map)
+static void	clean_map(t_map *map)
 {
 	if (map->matrix)
 		free_matrix(map->matrix, map->row);
@@ -26,7 +26,7 @@ static void clean_map(t_map *map)
 
 void	cleanup_textures(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	if (!data->textures || !data->textures[0])
@@ -42,18 +42,21 @@ void	cleanup_textures(t_data *data)
 		}
 	}
 }
-void clean_up(t_data *data)
+void	clean_up(t_data *data)
 {
-	cleanup_textures(data);
-	if (data->win)
+	if (!data)
+		return ;
+	if (data->win && data->img.img)
 		mlx_destroy_window(data->mlx, data->win);
+	if (data->win)
+		mlx_destroy_image(data->mlx, data->img.img);
+	cleanup_textures(data);
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
 	clean_map(data->map);
 }
 
-
-void 	display_err_and_exit(const char *msg, t_data *data)
+void	display_err_and_exit(const char *msg, t_data *data)
 {
 	ft_printf_fd(2, YELLOW);
 	ft_printf_fd(2, "Error\n");
