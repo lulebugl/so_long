@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:09:00 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/18 19:01:59 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/18 20:44:32 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@
 # define EXIT_PATH "assets/exit.xpm"
 # define TREE_TRUNK_PATH "assets/pumpkin.xpm"
 # define BANNER_PATH "assets/banner.xpm"
+# define FOAM_PATH "assets/foam1.xpm"
 
 #endif

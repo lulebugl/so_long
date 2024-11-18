@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:33:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/18 18:59:52 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/18 20:44:05 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 
 # define FULLSCREEN 0
 
-# define VALID_OBJECT "01CEP\n"
 # define MAP_TOO_BIG "Map too big for the screen resolution.\n"
 # define WRONG_EXTENSION "Map file extention is wrong (.ber expected).\n"
 # define NO_MAP "The Map couldn't be opened. Does it exist?\n"
@@ -44,6 +43,8 @@
 # define YELLOW "\033[0;33m"
 # define RESET "\033[0;37m"
 
+# define VALID_OBJECT "01CEPWTG[\n"
+
 # define TRANSPARENCY_COLOR 0xFF000000
 
 # define TILE_SIZE 64
@@ -59,6 +60,8 @@ typedef enum e_map_element
 	TREE = (int)'1',
 	TRUNK = (int)'[',
 	BANNER = (int)'B',
+	GOBLIN = (int)'G',
+	FOAM = (int)'$',
 }				t_map_element;
 
 typedef struct s_position
@@ -92,6 +95,7 @@ typedef enum e_texture_type
 	TEX_BANNER,
 	TEX_EXIT,
 	TEX_WATER,
+	TEX_FOAM,
 	TEX_COUNT,
 }				t_texture_type;
 
@@ -131,7 +135,7 @@ typedef struct s_data
 {
 	void		*mlx;
 	void		*win;
-	t_img 		img;
+	t_img		img;
 	t_texture	*textures[TEX_COUNT];
 	int			max_row;
 	int			max_col;
@@ -164,8 +168,7 @@ void			launch_game(t_data *data);
 
 // render
 void			load_textures(t_data *data);
-t_texture		*get_texture_for_elem(t_data *data, int element, int x,
-					int y);
+t_texture		*get_texture_for_elem(t_data *data, int element, int x, int y);
 void			draw_texture(t_img *img, t_texture *tex, int start_x,
 					int start_y);
 
@@ -183,8 +186,10 @@ void			clean_up(t_data *data);
 
 void			render_grass(t_data *data);
 void			render_water(t_data *data);
+void			render_foam(t_data *data);
+
 int				render_map(t_data *data);
 void			move_player(const char *direction, t_data *data);
-
+void			get_adjacent_tiles(t_data *data, int x, int y, int *adjacent);
 
 #endif

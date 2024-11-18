@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 14:47:46 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/18 19:54:13 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/18 20:56:02 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ void	render_grass(t_data *data)
 	int			y;
 	t_texture	*tex;
 
-	y = -1;
+	y = 0;
 	while (++y < data->map->row)
 	{
-		x = -1;
+		x = 0;
 		while (++x < data->map->col)
 		{
 			if (data->map->matrix[y][x] != WATER)
@@ -55,6 +55,38 @@ void	render_grass(t_data *data)
 		}
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
+}
+
+void	render_foam(t_data *data)
+{
+	int			x;
+	int			y;
+	int			adjacent[4];
+	t_texture	*tex;
+
+	y = 0;
+	while (++y < data->map->row - 1)
+	{
+		x = 0;
+		while (++x < data->map->col - 1)
+		{
+			if (data->map->matrix[y][x] != WATER)
+			{
+				printf("test\n");
+				get_adjacent_tiles(data, y, x, adjacent);
+				if (adjacent[0] == 1 || adjacent[1] == 1 || adjacent[2] == 1
+					|| adjacent[3] == 1)
+				{
+					printf("test in\n");
+					tex = get_texture_for_elem(data, FOAM, 0, 0);
+					if (tex)
+						draw_texture(&data->img, tex, x * TILE_SIZE, y
+							* TILE_SIZE + 10);
+				}
+			}
+		}
+		mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
+	}
 }
 
 static void	erase_player_last_pos(t_pos player, t_data *data)

@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 16:12:31 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/18 19:52:24 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/18 20:43:08 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	launch_game(t_data *data)
 	mlx_hook(data->win, KeyRelease, KeyReleaseMask, &on_keypress, data);
 	mlx_hook(data->win, DestroyNotify, StructureNotifyMask, &on_destroy, data);
 	render_water(data);
+	render_foam(data);
 	render_grass(data);
 	render_map(data);
 	mlx_loop(data->mlx);

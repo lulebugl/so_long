@@ -6,13 +6,13 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:38:19 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/18 19:27:20 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/18 20:37:46 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-static void	get_adjacent_tiles(t_data *data, int x, int y, int *adjacent)
+void	get_adjacent_tiles(t_data *data, int x, int y, int *adjacent)
 {
 	adjacent[0] = 0;
 	adjacent[1] = 0;
@@ -64,6 +64,8 @@ static t_texture_type	get_texture_line(int *adj)
 		return (TEX_GRASS_VT);
 	if (!adj[0] && adj[2] && adj[3] && adj[1])
 		return (TEX_GRASS_VB);
+	if (adj[0] && adj[2] && adj[3] && adj[1])
+		return (TEX_GRASS_SINGLE);
 	return (TEX_GRASS_ALL);
 }
 

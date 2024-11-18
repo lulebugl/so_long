@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:45:07 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/18 18:33:38 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/18 20:23:30 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,19 @@ void	free_matrix(int **matrix, int i)
 	free(matrix);
 }
 
+
+
 static int	put_player(int x, int y, t_data *data, int *row)
 {
 	data->map->player = (t_pos){x, y};
 	data->map->player_prev = (t_pos){x, y};
 	row[y] = PLAYER;
+}
+
+static int	put_exit(int x, int y, t_data *data, int *row)
+{
+			data->map->exit = (t_pos){x, y};
+			row[y] = EXIT;
 }
 
 static int	fill_matrix_row(int *row, char *tab_row, t_data *data, int posx)
@@ -43,20 +51,19 @@ static int	fill_matrix_row(int *row, char *tab_row, t_data *data, int posx)
 	{
 		if (tab_row[j] == 'P')
 			put_player(posx, j, data, row);
-		else if (tab_row[j] == 'C')
+		else if (tab_row[j] == COLLECTIBLE)
 		{
 			data->map->nb_collectible++;
 			row[j] = COLLECTIBLE;
 		}
-		else if (tab_row[j] == '1')
+		else if (tab_row[j] == '1' || tab_row[j] == 'T')
 			row[j] = TREE;
 		else if (tab_row[j] == WATER)
 			row[j] = WATER;
+		else if (tab_row[j] == TRUNK)
+			row[j] = TRUNK;
 		else if (tab_row[j] == 'E')
-		{
-			data->map->exit = (t_pos){posx, j};
-			row[j] = EXIT;
-		}
+			put_exit(posx, j, data, row);
 		else
 			row[j] = EMPTY;
 	}
