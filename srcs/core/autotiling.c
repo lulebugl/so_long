@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:38:19 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/18 17:44:26 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/18 18:09:08 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static t_texture_type	get_texture_line(int *adj)
 
 t_texture_type	check_adjacent(t_data *data, int x, int y)
 {
-	int 			adjacent[4];
+	int				adjacent[4];
 	t_texture_type	texture;
 
 	get_adjacent_tiles(data, x, y, adjacent);

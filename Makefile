@@ -6,7 +6,7 @@
 #    By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/07 16:00:50 by llebugle          #+#    #+#              #
-#    Updated: 2024/11/18 17:40:50 by llebugle         ###   ########.fr        #
+#    Updated: 2024/11/18 18:12:50 by llebugle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,22 +31,22 @@ OBJS_DIR = objs
 SRCS_DIR = srcs
 OBJS	 = $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 
-SRCS 	= main.c 					\
+SRCS 	= main.c 						\
 			core/events.c 				\
 			core/render.c				\
 			core/textures.c				\
-			core/game.c				\
-			core/draw.c				\
-			core/autotiling.c				\
-			core/move_player.c				\
-			parsing/parsing.c				\
+			core/game.c					\
+			core/draw.c					\
+			core/autotiling.c			\
+			core/move_player.c			\
+			core/utils.c				\
+			core/error.c				\
+			parsing/parsing.c			\
 			parsing/matrix.c			\
-			parsing/map_utils.c		\
+			parsing/map_utils.c			\
 			parsing/map_solver.c		\
-			parsing/map_init.c		\
+			parsing/map_init.c			\
 			parsing/map_validation.c	\
-			utils/utils.c			\
-			utils/error.c			\
 
 ifeq ($(shell uname), Linux)
 	MLX_DIR = ./minilibx-linux

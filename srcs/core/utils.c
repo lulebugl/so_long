@@ -6,16 +6,12 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 19:23:41 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/17 19:15:16 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/18 18:10:26 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-void 	print_player_pos(t_pos player)
-{
-	ft_printf("Player Position: (%d, %d)\n", player.x, player.y);
-}
 void	debug_print(t_data *data, char *location)
 {
 	if (!data)
@@ -28,14 +24,11 @@ void	debug_print(t_data *data, char *location)
 	ft_printf("Max Col: %d\n", data->max_col);
 	ft_printf("MLX Pointer: %p\n", data->mlx);
 	ft_printf("Window Pointer: %p\n", data->win);
-	// if (data->err_msg)
-	// 	ft_printf("\n=== Error Message ===\n%s\n", data->err_msg);
 	if (data->map)
 	{
 		ft_printf("\n=== Map Info ===\n");
 		ft_printf("Row Count: %d\n", data->map->row);
 		ft_printf("Column Count: %d\n", data->map->col);
-		//ft_printf("window size: %dx%d\n", data->map->row, data->map->col);
 		ft_printf("Collectibles: %d\n", data->map->nb_collectible);
 		ft_printf("Player Position: (%d, %d)\n", data->map->player.x,
 			data->map->player.y);

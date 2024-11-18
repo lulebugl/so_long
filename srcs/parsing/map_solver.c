@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 20:45:57 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/13 16:07:35 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/18 18:14:43 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	flood_fill(t_data *data, int **visited, t_pos pos, int *collectible)
 	if (!is_valid_position(data, pos) || visited[pos.x][pos.y])
 		return ;
 	if (is_obstacle(data->map->matrix[pos.x][pos.y]))
-        return ;
+		return ;
 	visited[pos.x][pos.y] = 1;
 	if (data->map->matrix[pos.x][pos.y] == COLLECTIBLE)
 		(*collectible)++;
@@ -65,16 +65,7 @@ int	is_map_solvable(t_data *data)
 	if (!visited)
 		return (set_err_msg(MALLOC_ERROR, data), 0);
 	collectibles = 0;
-	
-	// ft_printf("\nNeed to find %d collectibles\n", data->map->nb_collectible);
-	// ft_printf("Starting at position (%d, %d)\n", data->map->player.y,
-	// 	data->map->player.x);
-	//debug_print(data, 0);
 	flood_fill(data, visited, data->map->player, &collectibles);
-	
-	// print_matrix(visited, data);
-	// printf("exit {%d,%d}\n", data->map->exit.x, data->map->exit.y);
-	
 	can_reach_exit = visited[data->map->exit.x][data->map->exit.y];
 	free_matrix(visited, data->map->row);
 	if (!can_reach_exit)

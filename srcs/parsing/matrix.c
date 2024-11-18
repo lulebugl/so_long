@@ -6,13 +6,13 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:45:07 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/17 19:44:44 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/18 18:17:05 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-void free_matrix(int **matrix, int i)
+void	free_matrix(int **matrix, int i)
 {
 	if (!matrix || !*matrix)
 		return ;
@@ -23,9 +23,11 @@ void free_matrix(int **matrix, int i)
 	}
 	while (i--)
 		if (matrix[i])
-        	free(matrix[i]);
-    free(matrix);
+			free(matrix[i]);
+	free(matrix);
 }
+
+// static int put_player_and_water(int pos, t_data *data, )
 
 static int	fill_matrix_row(int *row, char *tab_row, t_data *data, int posx)
 {
@@ -42,7 +44,7 @@ static int	fill_matrix_row(int *row, char *tab_row, t_data *data, int posx)
 		}
 		else if (tab_row[j] == 'C')
 		{
-			data->map->nb_collectible++;	
+			data->map->nb_collectible++;
 			row[j] = COLLECTIBLE;
 		}
 		else if (tab_row[j] == '1')
@@ -61,11 +63,11 @@ static int	fill_matrix_row(int *row, char *tab_row, t_data *data, int posx)
 	return (0);
 }
 
-int update_matrix(t_data *data)
+int	update_matrix(t_data *data)
 {
-	int **matrix;
-	int x;
-	int y;
+	int	**matrix;
+	int	x;
+	int	y;
 
 	x = 0;
 	matrix = data->map->matrix;
@@ -77,13 +79,14 @@ int update_matrix(t_data *data)
 		{
 			if (matrix[x][y] == OBSTACLE)
 				data->map->matrix[x][y] = TREE;
-			if (data->map->matrix[x - 1][y] && data->map->matrix[x - 1][y] == COLLECTIBLE &&
-				data->map->matrix[x][y] == OBSTACLE)
+			if (data->map->matrix[x - 1][y] && data->map->matrix[x
+				- 1][y] == COLLECTIBLE && data->map->matrix[x][y] == OBSTACLE)
 				data->map->matrix[x][y] = TRUNK;
 		}
 	}
 	return (0);
 }
+
 int	create_matrix(char *map, char **tab, t_data *data)
 {
 	int	i;

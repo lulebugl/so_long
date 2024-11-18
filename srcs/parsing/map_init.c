@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:40:43 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/15 15:00:40 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/18 18:14:26 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ int	map_closed_by_obstacle(char **tab, t_data *data)
 	i = 0;
 	while (++i < data->map->row - 1)
 	{
-		if (!is_obstacle(tab[i][0]) ||
-			!is_obstacle(tab[i][data->map->col- 1]))
+		if (!is_obstacle(tab[i][0]) || !is_obstacle(tab[i][data->map->col - 1]))
 			return (data->err_msg = MAP_NOT_CLOSED, 0);
 		tab[i][0] = WATER;
 		tab[i][data->map->col - 1] = WATER;

@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 17:07:39 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/18 16:26:52 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/18 18:10:49 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	cleanup_textures(t_data *data)
 		}
 	}
 }
+
 void	clean_up(t_data *data)
 {
 	if (!data)
