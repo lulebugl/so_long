@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:09:00 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/18 17:29:08 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/18 19:01:59 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@
 # define PLAYER_PATH "assets/tiles/pawn_yellow.xpm"
 # define EXIT_PATH "assets/exit.xpm"
 # define TREE_TRUNK_PATH "assets/pumpkin.xpm"
+# define BANNER_PATH "assets/banner.xpm"
 
 #endif

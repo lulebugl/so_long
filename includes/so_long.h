@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:33:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/18 17:48:46 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/18 18:59:52 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef enum e_map_element
 	WATER = (int)'W',
 	TREE = (int)'1',
 	TRUNK = (int)'[',
+	BANNER = (int)'B',
 }				t_map_element;
 
 typedef struct s_position
@@ -88,6 +89,7 @@ typedef enum e_texture_type
 	TEX_TRUNK,
 	TEX_COLLECTIBLE,
 	TEX_PLAYER,
+	TEX_BANNER,
 	TEX_EXIT,
 	TEX_WATER,
 	TEX_COUNT,

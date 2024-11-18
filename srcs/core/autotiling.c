@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:38:19 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/18 18:09:08 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/18 19:27:20 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,21 @@ static t_texture_type	get_texture_corner(int *adj)
 	return (0);
 }
 
+// top, bottom, right, left
 static t_texture_type	get_texture_line(int *adj)
 {
 	if (adj[0] && adj[2] && !adj[3] && !adj[1])
 		return (TEX_GRASS_HM);
-	if (!adj[0] && !adj[2] && !adj[3] && adj[1])
-		return (TEX_GRASS_HR);
-	if (!adj[0] && !adj[2] && adj[3] && !adj[1])
+	if (adj[0] && adj[2] && adj[3] && !adj[1])
 		return (TEX_GRASS_HL);
+	if (adj[0] && adj[2] && !adj[3] && adj[1])
+		return (TEX_GRASS_HR);
 	if (!adj[0] && !adj[2] && adj[3] && adj[1])
 		return (TEX_GRASS_VM);
-	if (!adj[0] && adj[2] && !adj[3] && !adj[1])
-		return (TEX_GRASS_VB);
-	if (adj[0] && !adj[2] && !adj[3] && !adj[1])
+	if (adj[0] && !adj[2] && adj[3] && adj[1])
 		return (TEX_GRASS_VT);
+	if (!adj[0] && adj[2] && adj[3] && adj[1])
+		return (TEX_GRASS_VB);
 	return (TEX_GRASS_ALL);
 }
 
