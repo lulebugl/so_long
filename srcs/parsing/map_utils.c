@@ -6,17 +6,11 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:49:54 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/17 19:06:59 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/20 10:44:58 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
-
-int	is_obstacle(t_map_element element)
-{
-	return (element == OBSTACLE || element == WATER || element == TREE
-		|| element == TRUNK);
-}
 
 void	close_and_free(void *str, int fd)
 {

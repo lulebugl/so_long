@@ -6,28 +6,11 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:45:07 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/18 20:23:30 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/20 10:43:24 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
-
-void	free_matrix(int **matrix, int i)
-{
-	if (!matrix || !*matrix)
-		return ;
-	if (!i)
-	{
-		free(matrix);
-		return ;
-	}
-	while (i--)
-		if (matrix[i])
-			free(matrix[i]);
-	free(matrix);
-}
-
-
 
 static int	put_player(int x, int y, t_data *data, int *row)
 {
@@ -38,8 +21,8 @@ static int	put_player(int x, int y, t_data *data, int *row)
 
 static int	put_exit(int x, int y, t_data *data, int *row)
 {
-			data->map->exit = (t_pos){x, y};
-			row[y] = EXIT;
+	data->map->exit = (t_pos){x, y};
+	row[y] = EXIT;
 }
 
 static int	fill_matrix_row(int *row, char *tab_row, t_data *data, int posx)

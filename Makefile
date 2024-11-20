@@ -6,7 +6,7 @@
 #    By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/07 16:00:50 by llebugle          #+#    #+#              #
-#    Updated: 2024/11/18 18:12:50 by llebugle         ###   ########.fr        #
+#    Updated: 2024/11/20 10:47:53 by llebugle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ OBJS	 = $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 
 SRCS 	= main.c 						\
 			core/events.c 				\
+			core/events_utils.c			\
 			core/render.c				\
 			core/textures.c				\
 			core/game.c					\

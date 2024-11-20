@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_mandatory.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:33:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/20 11:29:02 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/20 11:30:13 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define FULLSCREEN 0
 # define TILE_SIZE 64
 # define TRANSPARENCY_COLOR 0xFF000000
-# define VALID_OBJECT "01CEPWTG[\n"
+# define VALID_OBJECT "01CEP\n"
 
 /* Colors */
 # define RED "\033[0;31m"

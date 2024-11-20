@@ -1,16 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.c                                           :+:      :+:    :+:   */
+/*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 22:42:14 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/18 16:52:12 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/20 11:02:09 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
+
+void	erase_player_last_pos(t_pos player, t_data *data)
+{
+	t_texture	*tex;
+
+	tex = get_texture_for_elem(data, data->map->matrix[player.x][player.y],
+			player.x, player.y);
+	if (tex)
+		draw_texture(&data->img, tex, player.y * TILE_SIZE, player.x
+			* TILE_SIZE);
+}
 
 void	update_player_position(t_data *data, t_pos next)
 {
@@ -59,10 +70,11 @@ void	move_player(const char *direction, t_data *data)
 	if (is_valid_move(data, next))
 	{
 		data->nb_moves++;
-		ft_printf("number of moves -> %d\n", data->nb_moves);
 		if (map->matrix[next.x][next.y] == COLLECTIBLE)
 			map->nb_collectible--;
 		update_player_position(data, next);
 		render_map(data);
+		if ((map->exit.x == map->player.x) && (map->exit.y == map->player.y))
+			ft_victory(data);
 	}
 }

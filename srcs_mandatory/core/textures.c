@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 13:00:14 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/18 17:50:47 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/18 20:42:39 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	load_textures_others(t_data *data)
 	data->textures[TEX_TRUNK] = load_texture(data->mlx, TREE_TRUNK_PATH);
 	data->textures[TEX_PLAYER] = load_texture(data->mlx, PLAYER_PATH);
 	data->textures[TEX_EXIT] = load_texture(data->mlx, EXIT_PATH);
+	data->textures[TEX_BANNER] = load_texture(data->mlx, BANNER_PATH);
+	data->textures[TEX_FOAM] = load_texture(data->mlx, FOAM_PATH);
 }
 
 void	load_textures(t_data *data)
@@ -90,8 +92,12 @@ t_texture	*get_texture_for_elem(t_data *data, int element, int x, int y)
 	}
 	if (element == TREE)
 		return (data->textures[TEX_TREE]);
+	if (element == FOAM)
+		return (data->textures[TEX_FOAM]);
 	if (element == TRUNK)
 		return (data->textures[TEX_TRUNK]);
+	if (element == BANNER)
+		return (data->textures[TEX_BANNER]);
 	if (element == COLLECTIBLE)
 		return (data->textures[TEX_COLLECTIBLE]);
 	if (element == PLAYER)
