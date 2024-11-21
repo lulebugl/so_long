@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 16:12:31 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/18 21:08:29 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/21 18:23:03 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,13 @@ void	init_window(t_data *data)
 			&data->img.line_length, &data->img.endian);
 }
 
-int	render_map(t_data *data)
+int	render_obstacles(t_data *data)
 {
 	int			x;
 	int			y;
 	t_texture	*tex;
 
 	y = -1;
-	erase_player_last_pos(data->map->player_prev, data);
 	while (++y < data->map->row)
 	{
 		x = -1;
@@ -52,6 +51,24 @@ int	render_map(t_data *data)
 	return (0);
 }
 
+int	render_map(t_data *data)
+{
+	int			x;
+	int			y;
+	t_texture	*tex;
+	t_pos		player;
+
+	y = data->map->player.y;
+	x = data->map->player.x;
+	erase_player_last_pos(data->map->player_prev, data);
+	tex = get_texture_for_elem(data, PLAYER, y, x);
+	if (tex)
+		draw_texture(&data->img, tex, y * TILE_SIZE, x * TILE_SIZE);
+	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
+	render_banner(data);
+	return (0);
+}
+
 void	launch_game(t_data *data)
 {
 	init_window(data);
@@ -61,6 +78,7 @@ void	launch_game(t_data *data)
 	render_water(data);
 	render_foam(data);
 	render_grass(data);
+	render_obstacles(data);
 	render_map(data);
 	mlx_loop(data->mlx);
 }

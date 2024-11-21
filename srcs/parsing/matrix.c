@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:45:07 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/20 10:43:24 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/21 18:22:13 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,26 +53,56 @@ static int	fill_matrix_row(int *row, char *tab_row, t_data *data, int posx)
 	return (0);
 }
 
+int	place_object(int **matrix, int x, int y)
+{
+	if (x <= 1)
+		return (0);
+	if (!is_obstacle(matrix[x][y]))
+		return (0);
+	// if (matrix[x - 1][y] == WATER && x == 1)
+	// 	return (1);
+	if (matrix[x - 1][y] == WATER && is_obstacle(matrix[x - 2][y]))
+		return (1);
+	return (0);
+}
+
+int	choose_object(int **matrix, int x, int y)
+{
+	if (x <= 1)
+		return (0);
+	if (!is_obstacle(matrix[x][y]))
+		return (0);
+	if (matrix[x - 2][y] == WATER && matrix[x - 1][y] == WATER)
+		return (1);
+	if (matrix[x - 1][y] == TREE)
+		return (TREE);
+	return (0);
+}
+
 int	update_matrix(t_data *data)
 {
 	int	**matrix;
 	int	x;
 	int	y;
+	int elem;
 
 	x = 0;
 	matrix = data->map->matrix;
-	while (++x < data->map->row)
+	while (++x < data->map->row - 1)
 	{
 		y = 0;
-		while (++y < data->map->col)
+		while (++y < data->map->col - 1)
 		{
 			if (matrix[x][y] == OBSTACLE)
-				data->map->matrix[x][y] = TREE;
-			if (data->map->matrix[x - 1][y] && data->map->matrix[x
-				- 1][y] == COLLECTIBLE && data->map->matrix[x][y] == OBSTACLE)
-				data->map->matrix[x][y] = TRUNK;
+				matrix[x][y] = WATER;
+			elem = place_object(data->map->matrix, x, y);
+			if (elem != 0)
+				matrix[x][y] = TRUNK;
+			if (should_place_tree(matrix, x, y))
+				matrix[x][y] = TREE;
 		}
 	}
+	print_matrix(matrix, data);
 	return (0);
 }
 
