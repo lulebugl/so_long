@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:45:07 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/21 18:22:13 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/21 18:47:21 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,15 @@ int	choose_object(int **matrix, int x, int y)
 		return (0);
 	if (!is_obstacle(matrix[x][y]))
 		return (0);
+	if (matrix[x - 2][y] == WATER && matrix[x - 1][y] == WATER &&
+		(!is_obstacle(matrix[x][y - 1]) || !is_obstacle(matrix[x][y + 1])))
+		{
+		return (BUSH);
+		}
 	if (matrix[x - 2][y] == WATER && matrix[x - 1][y] == WATER)
-		return (1);
-	if (matrix[x - 1][y] == TREE)
 		return (TREE);
+	if (matrix[x - 1][y] == TREE)
+	 	return (TREE);
 	return (0);
 }
 
@@ -95,11 +100,11 @@ int	update_matrix(t_data *data)
 		{
 			if (matrix[x][y] == OBSTACLE)
 				matrix[x][y] = WATER;
-			elem = place_object(data->map->matrix, x, y);
+			elem = choose_object(data->map->matrix, x, y);
 			if (elem != 0)
-				matrix[x][y] = TRUNK;
-			if (should_place_tree(matrix, x, y))
-				matrix[x][y] = TREE;
+				matrix[x][y] = elem;
+			// if (should_place_tree(matrix, x, y))
+			// 	matrix[x][y] = TREE;
 		}
 	}
 	print_matrix(matrix, data);

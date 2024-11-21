@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:33:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/21 18:23:49 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/21 18:40:14 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef enum e_texture_type
 	TEX_BANNER,
 	TEX_EXIT,
 	TEX_WATER,
+	TEX_BUSH,
 	TEX_FOAM,
 	TEX_COUNT,
 }				t_texture_type;
@@ -130,17 +131,18 @@ typedef struct s_data
 
 typedef enum e_map_element
 {
-	EMPTY = (int)'0',
-	OBSTACLE = (int)'1',
-	COLLECTIBLE = (int)'C',
-	PLAYER = (int)'P',
-	EXIT = (int)'E',
-	WATER = (int)'W',
-	TREE = (int)'1',
-	TRUNK = (int)'[',
-	BANNER = (int)'B',
-	GOBLIN = (int)'G',
-	FOAM = (int)'$',
+	EMPTY = '0',
+	OBSTACLE = '1',
+	COLLECTIBLE = 'C',
+	PLAYER = 'P',
+	EXIT = 'E',
+	WATER = 'W',
+	TREE = '1',
+	TRUNK = '[',
+	BUSH = '&',
+	BANNER = 'B',
+	GOBLIN = 'G',
+	FOAM = '$',
 }				t_map_element;
 
 int				parse_arguments(int ac, char **av, t_data *data);

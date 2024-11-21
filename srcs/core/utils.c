@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 19:23:41 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/20 10:44:46 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/21 18:45:10 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	is_obstacle(t_map_element element)
 {
 	return (element == OBSTACLE || element == WATER || element == TREE
-		|| element == TRUNK);
+		|| element == TRUNK || element == BUSH);
 }
 
 void	free_matrix(int **matrix, int i)
