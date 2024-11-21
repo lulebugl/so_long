@@ -6,22 +6,11 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 22:42:14 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/21 21:08:32 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/21 21:09:53 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
-
-void	erase_player_last_pos(t_pos player, t_data *data)
-{
-	t_texture	*tex;
-
-	tex = get_texture_for_elem(data, data->map->matrix[player.x][player.y],
-			player.x, player.y);
-	if (tex)
-		draw_texture(&data->img, tex, player.y * TILE_SIZE, player.x
-			* TILE_SIZE);
-}
 
 void	update_player_position(t_data *data, t_pos next)
 {
@@ -35,9 +24,6 @@ static int	is_valid_move(t_data *data, t_pos next)
 {
 	if (next.x < 0 || next.x >= data->map->row || next.y < 0
 		|| next.y >= data->map->col)
-		return (0);
-	if (data->map->matrix[next.x][next.y] == EXIT
-		&& data->map->nb_collectible > 0)
 		return (0);
 	return (!is_obstacle(data->map->matrix[next.x][next.y]));
 }
@@ -74,7 +60,8 @@ void	move_player(const char *direction, t_data *data)
 			map->nb_collectible--;
 		update_player_position(data, next);
 		update_map(data);
-		if ((map->exit.x == map->player.x) && (map->exit.y == map->player.y))
+		if ((map->exit.x == map->player.x) && (map->exit.y == map->player.y)
+			&& data->map->nb_collectible == 0)
 			ft_victory(data);
 	}
 }

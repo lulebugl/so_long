@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:33:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/21 21:13:53 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/21 22:29:52 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,15 @@
 # include <X11/keysym.h>
 # include <assert.h>
 # include <fcntl.h>
+# include <math.h>
 # include <stdbool.h>
+# include <time.h>
 
 /* Constants */
 # define FULLSCREEN 0
 # define TILE_SIZE 64
 # define TRANSPARENCY_COLOR 0xFF000000
 # define VALID_OBJECT "01CEP\n"
-//# define VALID_OBJECT "01CEPWTG[\n"
 
 /* Colors */
 # define RED "\033[0;31m"

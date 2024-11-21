@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 13:00:14 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/18 20:42:39 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/21 21:11:58 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ t_texture	*load_texture(void *mlx, char *path)
 void	load_textures_others(t_data *data)
 {
 	data->textures[TEX_TREE] = load_texture(data->mlx, TREE_PATH);
+	data->textures[TEX_BUSH] = load_texture(data->mlx, BUSH_PATH);
 	data->textures[TEX_WATER] = load_texture(data->mlx, WATER_PATH);
 	data->textures[TEX_COLLECTIBLE] = load_texture(data->mlx, COLLECTIBLE_PATH);
 	data->textures[TEX_TRUNK] = load_texture(data->mlx, TREE_TRUNK_PATH);
@@ -74,6 +75,7 @@ void	load_textures(t_data *data)
 	data->textures[TEX_GRASS_VT] = load_texture(data->mlx, GRASS_VT);
 	data->textures[TEX_GRASS_VB] = load_texture(data->mlx, GRASS_VB);
 	data->textures[TEX_GRASS_VM] = load_texture(data->mlx, GRASS_VM);
+	data->textures[TEX_TOP_TREE] = load_texture(data->mlx, TOP_TREE_PATH);
 	data->textures[TEX_GRASS_SINGLE] = load_texture(data->mlx, GRASS_SINGLE);
 	load_textures_others(data);
 	while (++i < TEX_COUNT)
@@ -86,10 +88,7 @@ t_texture	*get_texture_for_elem(t_data *data, int element, int x, int y)
 	t_texture_type	tex_type;
 
 	if (element == EMPTY)
-	{
-		tex_type = check_adjacent(data, x, y);
-		return (data->textures[tex_type]);
-	}
+		return (data->textures[check_adjacent(data, x, y)]);
 	if (element == TREE)
 		return (data->textures[TEX_TREE]);
 	if (element == FOAM)
@@ -98,6 +97,8 @@ t_texture	*get_texture_for_elem(t_data *data, int element, int x, int y)
 		return (data->textures[TEX_TRUNK]);
 	if (element == BANNER)
 		return (data->textures[TEX_BANNER]);
+	if (element == BUSH)
+		return (data->textures[TEX_BUSH]);
 	if (element == COLLECTIBLE)
 		return (data->textures[TEX_COLLECTIBLE]);
 	if (element == PLAYER)

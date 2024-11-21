@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:45:07 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/20 10:43:24 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/21 19:43:03 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,29 +49,6 @@ static int	fill_matrix_row(int *row, char *tab_row, t_data *data, int posx)
 			put_exit(posx, j, data, row);
 		else
 			row[j] = EMPTY;
-	}
-	return (0);
-}
-
-int	update_matrix(t_data *data)
-{
-	int	**matrix;
-	int	x;
-	int	y;
-
-	x = 0;
-	matrix = data->map->matrix;
-	while (++x < data->map->row)
-	{
-		y = 0;
-		while (++y < data->map->col)
-		{
-			if (matrix[x][y] == OBSTACLE)
-				data->map->matrix[x][y] = TREE;
-			if (data->map->matrix[x - 1][y] && data->map->matrix[x
-				- 1][y] == COLLECTIBLE && data->map->matrix[x][y] == OBSTACLE)
-				data->map->matrix[x][y] = TRUNK;
-		}
 	}
 	return (0);
 }

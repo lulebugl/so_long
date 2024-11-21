@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:16:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/20 11:42:50 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/21 21:09:43 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,20 @@ static inline int	is_key_move(int keysym)
 
 int	on_keypress(int keysym, t_data *data)
 {
+	if (keysym == XK_Escape)
+		on_destroy(data);
 	if ((data->map->exit.x == data->map->player.x)
-		&& (data->map->exit.y == data->map->player.y))
+		&& (data->map->exit.y == data->map->player.y)
+		&& data->map->nb_collectible == 0)
 	{
 		clean_up(data);
 		exit(0);
 	}
-	if (keysym == XK_Escape)
-		on_destroy(data);
+	return (0);
+}
+
+int	on_keyrelease(int keysym, t_data *data)
+{
 	if (is_key_move(keysym))
 		move_player(get_direction(keysym), data);
 	return (0);
