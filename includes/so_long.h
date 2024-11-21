@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:33:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/21 20:26:55 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/21 21:13:53 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@
 # define FULLSCREEN 0
 # define TILE_SIZE 64
 # define TRANSPARENCY_COLOR 0xFF000000
-# define VALID_OBJECT "01CEPWTG[\n"
+# define VALID_OBJECT "01CEP\n"
+//# define VALID_OBJECT "01CEPWTG[\n"
 
 /* Colors */
 # define RED "\033[0;31m"
@@ -106,14 +107,13 @@ typedef struct s_texture
 	int			offset_y;
 }				t_texture;
 
-// typedef struct s_player {
-//     t_pos   pos;          // Current grid position
-//     t_pos   target;       // Target grid position
-//     float   visual_x;     // Actual render position
-//     float   visual_y;
-//     float   speed;        // Movement speed (pixels per frame)
-//     bool    is_moving;    // Whether player is currently in motion
-// } t_player;
+typedef struct s_keys
+{
+	int			left;
+	int			right;
+	int			up;
+	int			down;
+}				t_keys;
 
 typedef struct s_map
 {
@@ -121,7 +121,7 @@ typedef struct s_map
 	int			row;
 	int			col;
 	int			nb_collectible;
-	t_pos	player;
+	t_pos		player;
 	t_pos		player_prev;
 	t_pos		exit;
 }				t_map;
@@ -156,7 +156,7 @@ typedef enum e_map_element
 }				t_map_element;
 
 int				parse_arguments(int ac, char **av, t_data *data);
-int				render_map(t_data *data);
+int				update_map(t_data *data);
 void			move_player(const char *direction, t_data *data);
 void			erase_player_last_pos(t_pos player, t_data *data);
 
@@ -166,6 +166,7 @@ void			init_window(t_data *data);
 
 /* events.c */
 int				on_keypress(int keysym, t_data *data);
+int				on_keyrelease(int keysym, t_data *data);
 
 /* events_utils.c */
 int				on_destroy(t_data *data);
@@ -187,13 +188,14 @@ int				create_matrix(char *map, char **tab, t_data *data);
 void			free_matrix(int **matrix, int i);
 
 /* update_matrix.c */
-int	update_matrix(t_data *data);
+int				update_matrix(t_data *data);
 
 /* render.c */
 void			render_banner(t_data *data);
 void			render_grass(t_data *data);
 void			render_water(t_data *data);
 void			render_foam(t_data *data);
+int				render_obstacles(t_data *data);
 
 /* textures.c */
 void			load_textures(t_data *data);

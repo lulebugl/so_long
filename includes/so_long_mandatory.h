@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:33:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/20 11:30:13 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/21 21:08:32 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ typedef enum e_map_element
 }				t_map_element;
 
 int				parse_arguments(int ac, char **av, t_data *data);
-int				render_map(t_data *data);
+int				update_map(t_data *data);
 void			move_player(const char *direction, t_data *data);
 void			erase_player_last_pos(t_pos player, t_data *data);
 

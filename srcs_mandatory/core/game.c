@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 16:12:31 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/18 21:08:29 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/21 21:08:32 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	init_window(t_data *data)
 			&data->img.line_length, &data->img.endian);
 }
 
-int	render_map(t_data *data)
+int	update_map(t_data *data)
 {
 	int			x;
 	int			y;
@@ -61,6 +61,6 @@ void	launch_game(t_data *data)
 	render_water(data);
 	render_foam(data);
 	render_grass(data);
-	render_map(data);
+	update_map(data);
 	mlx_loop(data->mlx);
 }

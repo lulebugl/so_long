@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 19:43:08 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/21 20:16:16 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/21 21:07:23 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,5 @@ int	update_matrix(t_data *data)
 				matrix[x][y] = elem;
 		}
 	}
-	print_matrix(matrix, data);
 	return (0);
 }

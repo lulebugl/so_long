@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 13:00:14 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/21 19:50:57 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/21 21:11:58 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,7 @@ t_texture	*get_texture_for_elem(t_data *data, int element, int x, int y)
 	t_texture_type	tex_type;
 
 	if (element == EMPTY)
-	{
-		tex_type = check_adjacent(data, x, y);
-		return (data->textures[tex_type]);
-	}
+		return (data->textures[check_adjacent(data, x, y)]);
 	if (element == TREE)
 		return (data->textures[TEX_TREE]);
 	if (element == FOAM)

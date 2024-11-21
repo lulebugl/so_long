@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 22:42:14 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/21 20:16:33 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/21 21:09:53 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,9 @@ void	move_player(const char *direction, t_data *data)
 		if (map->matrix[next.x][next.y] == COLLECTIBLE)
 			map->nb_collectible--;
 		update_player_position(data, next);
-		render_map(data);
-		if ((map->exit.x == map->player.x) && (map->exit.y == map->player.y) && data->map->nb_collectible == 0)
+		update_map(data);
+		if ((map->exit.x == map->player.x) && (map->exit.y == map->player.y)
+			&& data->map->nb_collectible == 0)
 			ft_victory(data);
 	}
 }

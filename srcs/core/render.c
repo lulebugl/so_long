@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 14:47:46 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/20 10:31:51 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/21 21:05:59 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,31 @@ void	render_grass(t_data *data)
 		}
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
+}
+
+int	render_obstacles(t_data *data)
+{
+	int			x;
+	int			y;
+	t_texture	*tex;
+
+	y = -1;
+	while (++y < data->map->row)
+	{
+		x = -1;
+		while (++x < data->map->col)
+		{
+			tex = NULL;
+			if (data->map->matrix[y][x] != WATER
+				&& data->map->matrix[y][x] != EMPTY)
+				tex = get_texture_for_elem(data, data->map->matrix[y][x], y, x);
+			if (tex)
+				draw_texture(&data->img, tex, x * TILE_SIZE, y * TILE_SIZE);
+		}
+	}
+	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
+	render_banner(data);
+	return (0);
 }
 
 void	render_foam(t_data *data)
