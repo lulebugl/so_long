@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:33:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/21 18:40:14 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/21 20:26:55 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef enum e_texture_type
 	TEX_GRASS_VM,
 	TEX_GRASS_SINGLE,
 	TEX_TREE,
+	TEX_TOP_TREE,
 	TEX_TRUNK,
 	TEX_COLLECTIBLE,
 	TEX_PLAYER,
@@ -105,13 +106,22 @@ typedef struct s_texture
 	int			offset_y;
 }				t_texture;
 
+// typedef struct s_player {
+//     t_pos   pos;          // Current grid position
+//     t_pos   target;       // Target grid position
+//     float   visual_x;     // Actual render position
+//     float   visual_y;
+//     float   speed;        // Movement speed (pixels per frame)
+//     bool    is_moving;    // Whether player is currently in motion
+// } t_player;
+
 typedef struct s_map
 {
 	int			**matrix;
 	int			row;
 	int			col;
 	int			nb_collectible;
-	t_pos		player;
+	t_pos	player;
 	t_pos		player_prev;
 	t_pos		exit;
 }				t_map;
@@ -175,6 +185,9 @@ int				is_map_solvable(t_data *data);
 /* matrix.c */
 int				create_matrix(char *map, char **tab, t_data *data);
 void			free_matrix(int **matrix, int i);
+
+/* update_matrix.c */
+int	update_matrix(t_data *data);
 
 /* render.c */
 void			render_banner(t_data *data);

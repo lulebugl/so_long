@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 13:00:14 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/21 18:39:39 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/21 19:50:57 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	load_textures(t_data *data)
 	data->textures[TEX_GRASS_VT] = load_texture(data->mlx, GRASS_VT);
 	data->textures[TEX_GRASS_VB] = load_texture(data->mlx, GRASS_VB);
 	data->textures[TEX_GRASS_VM] = load_texture(data->mlx, GRASS_VM);
+	data->textures[TEX_TOP_TREE] = load_texture(data->mlx, TOP_TREE_PATH);
 	data->textures[TEX_GRASS_SINGLE] = load_texture(data->mlx, GRASS_SINGLE);
 	load_textures_others(data);
 	while (++i < TEX_COUNT)

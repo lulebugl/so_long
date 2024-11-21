@@ -6,7 +6,7 @@
 #    By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/07 16:00:50 by llebugle          #+#    #+#              #
-#    Updated: 2024/11/20 10:47:53 by llebugle         ###   ########.fr        #
+#    Updated: 2024/11/21 19:45:03 by llebugle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRCS 	= main.c 						\
 			core/error.c				\
 			parsing/parsing.c			\
 			parsing/matrix.c			\
+			parsing/update_matrix.c			\
 			parsing/map_utils.c			\
 			parsing/map_solver.c		\
 			parsing/map_init.c			\
