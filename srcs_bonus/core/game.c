@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 16:12:31 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 16:01:40 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 19:45:17 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,6 @@ void	init_window(t_data *data)
 		display_err_and_exit("Failed to create image", data);
 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bits_per_pixel,
 			&data->img.line_length, &data->img.endian);
-}
-
-void	draw_top_tree(t_pos player, t_data *data)
-{
-	if (player.x < data->map->row - 2 && data->map->matrix[player.x
-		+ 2][player.y] == TREE)
-	{
-		draw_texture(&data->img, data->textures[TEX_TOP_TREE], player.y
-			* TILE_SIZE, player.x * TILE_SIZE);
-	}
 }
 
 void	erase_player_last_pos(t_pos player, t_data *data)
@@ -55,16 +45,16 @@ int	update_map(t_data *data)
 	t_texture	*tex;
 	t_pos		player;
 
-	x = data->map->player.x;
-	y = data->map->player.y;
 	erase_player_last_pos(data->map->player_prev, data);
-	draw_texture(&data->img, data->textures[TEX_PLAYER], y * TILE_SIZE, x
-		* TILE_SIZE);
-	draw_top_tree(data->map->player, data);
 	x = data->map->exit.x;
 	y = data->map->exit.y;
 	draw_texture(&data->img, data->textures[TEX_EXIT], y * TILE_SIZE, x
 		* TILE_SIZE);
+	x = data->map->player.x;
+	y = data->map->player.y;
+	draw_texture(&data->img, data->textures[TEX_PLAYER], y * TILE_SIZE, x
+		* TILE_SIZE);
+	draw_top_tree(data->map->player, data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 	render_banner(data);
 	return (0);

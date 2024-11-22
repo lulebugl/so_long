@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:33:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 17:42:37 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 19:13:40 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,8 +237,11 @@ int				render_obstacles(t_data *data);
 /* textures.c */
 void			load_textures(t_data *data);
 t_texture		*get_texture_for_elem(t_data *data, int element, int x, int y);
+
+/* draw.c */
 void			draw_texture(t_img *img, t_texture *tex, int start_x,
 					int start_y);
+void			draw_top_tree(t_pos player, t_data *data);
 
 /* autotiling.c */
 t_texture_type	check_adjacent(t_data *data, int x, int y);

@@ -6,11 +6,21 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 18:02:06 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 14:31:53 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 19:35:30 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long_bonus.h"
+
+void	draw_top_tree(t_pos player, t_data *data)
+{
+	if (player.x < data->map->row - 2 \
+		&& data->map->matrix[player.x + 2][player.y] == TREE)
+	{
+		draw_texture(&data->img, data->textures[TEX_TOP_TREE], player.y
+			* TILE_SIZE, player.x * TILE_SIZE);
+	}
+}
 
 static void	draw_pixel(t_img *img, int x, int y, int color)
 {

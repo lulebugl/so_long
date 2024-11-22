@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 17:29:36 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 17:43:04 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 19:11:05 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	check_adjacents(t_data *data, t_pathfind *pf, t_pos current)
 
 bool	check_paths_bfs(t_data *data, t_pathfind *pf)
 {
-	t_pos current;
+	t_pos	current;
 
 	while (*pf->front < *pf->rear)
 	{

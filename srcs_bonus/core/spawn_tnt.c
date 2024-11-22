@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 15:17:20 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 18:03:21 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 19:20:20 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,16 +72,17 @@ static bool	try_spawn_location(t_data *data, int *empty_spots, int empty_count)
 
 static void	wandered_too_much(t_data *data)
 {
-	ft_printf("==========================================\n");
+	ft_printf("\n==========================================\n");
 	ft_printf("    ☠️   You Wandered for too long      !!!\n");
 	ft_printf("------------------------------------------\n");
 	ft_printf("    Total moves: %d\n", data->nb_moves);
 	ft_printf("    Collectibles left: %d\n", data->map->nb_collectible);
 	ft_printf("\n  Press any key to continue...\n\n");
-	ft_printf("==========================================\n");
+	ft_printf("==========================================\n\n");
 	clean_up(data);
 	exit(0);
 }
+
 void	spawn_tnt(t_data *data)
 {
 	static clock_t	last_spawn = 0;
@@ -100,13 +101,13 @@ void	spawn_tnt(t_data *data)
 	empty_count = collect_empty_spots(data, empty_spots);
 	if (try_spawn_location(data, empty_spots, empty_count))
 	{
-		free(empty_spots);
 		last_spawn = current_time;
+		return (free(empty_spots));
 	}
-	else if (!has_clear_path(data, data->map->player))
+	if (elapsed > 3)
 	{
 		free(empty_spots);
 		wandered_too_much(data);
 	}
+	free(empty_spots);
 }
-
