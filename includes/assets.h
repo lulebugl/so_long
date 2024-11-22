@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:09:00 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 14:05:24 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 16:21:52 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define PLAYER_PATH "assets/player.xpm"
 # define EXIT_PATH "assets/exit.xpm"
 # define TREE_TRUNK_PATH "assets/trunk.xpm"
+# define GOBLIN_PATH "assets/goblin.xpm"
 # define BUSH_PATH "assets/bush.xpm"
 # define BANNER_PATH "assets/banner.xpm"
 # define FOAM_PATH "assets/foam1.xpm"

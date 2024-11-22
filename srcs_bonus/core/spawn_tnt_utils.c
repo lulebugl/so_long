@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 15:49:14 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 15:52:44 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 16:23:28 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,24 @@ double get_spawn_rate(t_data *data)
     return (2.0 / log2(area));
 }
 
-bool is_valid_move(t_data *data, int **visited, int x, int y)
+int collect_empty_spots(t_data *data, int *empty_spots)
 {
-    return (x >= 0 && x < data->map->row && 
-            y >= 0 && y < data->map->col && 
-            !visited[x][y] && 
-            !is_obstacle(data->map->matrix[x][y]));
+    int empty_count;
+    int x;
+    int y;
+
+    empty_count = 0;
+    y = 0;
+    while (++y < data->map->row)
+    {
+        x = 0;
+        while (++x < data->map->col)
+        {
+            if (data->map->matrix[y][x] == EMPTY)
+                empty_spots[empty_count++] = y * data->map->col + x;
+        }
+    }
+    return (empty_count);
 }
 
 void cleanup_pathfinding(int **visited, t_pos *queue, int row)

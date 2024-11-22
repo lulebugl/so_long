@@ -6,11 +6,19 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 15:17:20 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 15:52:27 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 16:23:46 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long_bonus.h"
+
+static bool is_valid_move(t_data *data, int **visited, int x, int y)
+{
+    return (x >= 0 && x < data->map->row && 
+            y >= 0 && y < data->map->col && 
+            !visited[x][y] && 
+            !is_obstacle(data->map->matrix[x][y]));
+}
 
 /*
 ** Process the BFS queue to check paths to exit and collectibles
@@ -84,35 +92,6 @@ bool has_clear_path(t_data *data, t_pos start)
     return (false);
 }
 
-// Part 4: spawning.c
-/*
-** Collects all empty spots on the map
-** Returns: Number of empty spots found
-*/
-static int collect_empty_spots(t_data *data, int *empty_spots)
-{
-    int empty_count;
-    int x;
-    int y;
-
-    empty_count = 0;
-    y = -1;
-    while (++y < data->map->row)
-    {
-        x = -1;
-        while (++x < data->map->col)
-        {
-            if (data->map->matrix[y][x] == EMPTY)
-                empty_spots[empty_count++] = y * data->map->col + x;
-        }
-    }
-    return (empty_count);
-}
-
-/*
-** Attempts to spawn a TNT at a random valid location
-** Returns: true if spawn was successful, false otherwise
-*/
 static bool try_spawn_location(t_data *data, int *empty_spots, int empty_count)
 {
     t_texture   *tex;
@@ -140,16 +119,12 @@ static bool try_spawn_location(t_data *data, int *empty_spots, int empty_count)
     return (false);
 }
 
-/*
-** Attempts to spawn TNT at a valid location
-** Ensures map remains solvable after spawn
-*/
 void spawn_tnt(t_data *data)
 {
     static clock_t  last_spawn = 0;
     clock_t         current_time;
     double          elapsed;
-    int             empty_spots[data->map->row * data->map->col];  // Adjust size as needed
+    int             empty_spots[data->map->row * data->map->col];
     int             empty_count;
 
     current_time = clock();

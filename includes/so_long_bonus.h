@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:33:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 15:57:42 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 16:23:38 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,8 @@ typedef struct s_check
 ** spawn_tnt_utils.c
 */
 double			get_spawn_rate(t_data *data);
-bool		is_valid_move(t_data *data, int **visited, int x, int y);
+int				collect_empty_spots(t_data *data, int *empty_spots);
+//bool			is_valid_move(t_data *data, int **visited, int x, int y);
 void			cleanup_pathfinding(int **visited, t_pos *queue, int row);
 void			spawn_tnt(t_data *data);
 

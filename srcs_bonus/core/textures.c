@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 13:00:14 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 14:31:53 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 16:22:32 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	load_textures_others(t_data *data)
 	data->textures[TEX_BUSH] = load_texture(data->mlx, BUSH_PATH);
 	data->textures[TEX_WATER] = load_texture(data->mlx, WATER_PATH);
 	data->textures[TEX_COLLECTIBLE] = load_texture(data->mlx, COLLECTIBLE_PATH);
-	data->textures[TEX_TRUNK] = load_texture(data->mlx, TREE_TRUNK_PATH);
+	data->textures[TEX_TRUNK] = load_texture(data->mlx, GOBLIN_PATH);
 	data->textures[TEX_PLAYER] = load_texture(data->mlx, PLAYER_PATH);
 	data->textures[TEX_EXIT] = load_texture(data->mlx, EXIT_PATH);
 	data->textures[TEX_BANNER] = load_texture(data->mlx, BANNER_PATH);
