@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:33:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 16:23:38 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 17:42:37 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@
 # define TILE_SIZE 64
 # define TRANSPARENCY_COLOR 0xFF000000
 # define VALID_OBJECT "01CEP\n"
-# define COLLISION -1
+# define ENNEMY -1
+# define DROWNED -2
 
 /* Colors */
 # define RED "\033[0;31m"
@@ -79,6 +80,7 @@ typedef enum e_texture_type
 	TEX_WATER,
 	TEX_BUSH,
 	TEX_FOAM,
+	TEX_GOBLIN,
 	TEX_COUNT,
 }				t_texture_type;
 
@@ -164,19 +166,32 @@ typedef struct s_check
 	int			collectibles;
 }				t_check;
 
+typedef struct s_pathfind
+{
+	t_pos		*queue;
+	int			**visited;
+	int			*front;
+	int			*rear;
+	t_check		*check;
+}				t_pathfind;
+
+/* bfs.c */
+bool			check_paths_bfs(t_data *data, t_pathfind *pf);
+
 /*
 ** spawn_tnt.c
 ** spawn_tnt_utils.c
 */
 double			get_spawn_rate(t_data *data);
 int				collect_empty_spots(t_data *data, int *empty_spots);
-//bool			is_valid_move(t_data *data, int **visited, int x, int y);
 void			cleanup_pathfinding(int **visited, t_pos *queue, int row);
 void			spawn_tnt(t_data *data);
 
 int				parse_arguments(int ac, char **av, t_data *data);
 int				update_map(t_data *data);
 void			move_player(const char *direction, t_data *data);
+void			update_player_position(t_data *data, t_pos next);
+
 void			erase_player_last_pos(t_pos player, t_data *data);
 
 /* game.c */
@@ -188,6 +203,8 @@ int				on_keypress(int keysym, t_data *data);
 int				on_keyrelease(int keysym, t_data *data);
 
 /* events_utils.c */
+void			ft_lost(t_data *data, t_pos next);
+void			ft_drowned(t_data *data, t_pos next);
 int				on_destroy(t_data *data);
 char			*get_direction(int keysym);
 void			ft_victory(t_data *data);

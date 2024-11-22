@@ -6,11 +6,9 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 15:49:14 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 16:23:28 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 17:35:24 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "../../includes/so_long_bonus.h"
 
 #include "../../includes/so_long_bonus.h"
 
@@ -24,7 +22,9 @@ double get_spawn_rate(t_data *data)
         return (0.1);
     else if (area > 300)
         return (0.5 / log2(area) * 0.3);
-    return (2.0 / log2(area));
+	else if (area > 150)
+        return (1.5 / log2(area) * 0.3);
+    return (3.0 / log2(area));
 }
 
 int collect_empty_spots(t_data *data, int *empty_spots)
@@ -55,5 +55,5 @@ void cleanup_pathfinding(int **visited, t_pos *queue, int row)
     while (++i < row)
         free(visited[i]);
     free(visited);
-    free(queue);
+	free(queue);
 }

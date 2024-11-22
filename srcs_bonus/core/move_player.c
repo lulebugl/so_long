@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 22:42:14 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 15:17:02 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 17:02:01 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ static int	is_valid_move(t_data *data, t_pos next)
 		|| next.y >= data->map->col)
 		return (0);
 	if (data->map->matrix[next.x][next.y] == WATER)
-		return (COLLISION);
+		return (DROWNED);
+	if (data->map->matrix[next.x][next.y] == GOBLIN)
+		return (ENNEMY);
 	return (!is_obstacle(data->map->matrix[next.x][next.y]));
 }
 
@@ -47,21 +49,6 @@ static t_pos	get_next_position(int curr_x, int curr_y, const char *direction)
 	return (next);
 }
 
-void	ft_drowned(t_data *data, t_pos next)
-{
-	update_player_position(data, next);
-	update_map(data);
-	ft_printf("=================================\n");
-	ft_printf("    🛟 You've drowned         !!!\n");
-	ft_printf("---------------------------------\n");
-	ft_printf("    Total moves: %d\n", data->nb_moves);
-	ft_printf("    Collectibles left: %d\n", data->map->nb_collectible);
-	ft_printf("\n  Press any key to continue...\n\n");
-	ft_printf("=================================\n");
-	clean_up(data);
-	exit(0);
-}
-
 void	move_player(const char *direction, t_data *data)
 {
 	t_pos	next;
@@ -74,8 +61,10 @@ void	move_player(const char *direction, t_data *data)
 	ret = is_valid_move(data, next);
 	if (ret != 0)
 	{
-		if (ret == COLLISION)
+		if (ret == DROWNED)
 			ft_drowned(data, next);
+		if (ret == ENNEMY)
+			ft_lost(data, next);
 		data->nb_moves++;
 		if (map->matrix[next.x][next.y] == COLLECTIBLE)
 			map->nb_collectible--;

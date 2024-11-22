@@ -6,11 +6,41 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 10:46:37 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 14:31:53 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 17:04:49 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long_bonus.h"
+
+void	ft_drowned(t_data *data, t_pos next)
+{
+	update_player_position(data, next);
+	update_map(data);
+	ft_printf("=================================\n");
+	ft_printf("    🛟 You've drowned         !!!\n");
+	ft_printf("---------------------------------\n");
+	ft_printf("    Total moves: %d\n", data->nb_moves);
+	ft_printf("    Collectibles left: %d\n", data->map->nb_collectible);
+	ft_printf("\n  Press any key to continue...\n\n");
+	ft_printf("=================================\n");
+	clean_up(data);
+	exit(0);
+}
+
+void	ft_lost(t_data *data, t_pos next)
+{
+	update_player_position(data, next);
+	update_map(data);
+	ft_printf("=================================\n");
+	ft_printf("    ☠️   You exploded          !!!\n");
+	ft_printf("---------------------------------\n");
+	ft_printf("    Total moves: %d\n", data->nb_moves);
+	ft_printf("    Collectibles left: %d\n", data->map->nb_collectible);
+	ft_printf("\n  Press any key to continue...\n\n");
+	ft_printf("=================================\n");
+	clean_up(data);
+	exit(0);
+}
 
 void	ft_victory(t_data *data)
 {
