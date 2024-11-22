@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:33:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 14:39:56 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 15:57:42 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ typedef struct s_data
 	int			max_col;
 	char		*err_msg;
 	int			nb_moves;
+	bool		pause;
 	t_map		*map;
 }				t_data;
 
@@ -156,6 +157,21 @@ typedef enum e_map_element
 	GOBLIN = 'G',
 	FOAM = '$',
 }				t_map_element;
+
+typedef struct s_check
+{
+	bool		reached_exit;
+	int			collectibles;
+}				t_check;
+
+/*
+** spawn_tnt.c
+** spawn_tnt_utils.c
+*/
+double			get_spawn_rate(t_data *data);
+bool		is_valid_move(t_data *data, int **visited, int x, int y);
+void			cleanup_pathfinding(int **visited, t_pos *queue, int row);
+void			spawn_tnt(t_data *data);
 
 int				parse_arguments(int ac, char **av, t_data *data);
 int				update_map(t_data *data);
@@ -183,6 +199,7 @@ int				validate_map_content(char *map, t_data *data);
 char			**validate_map_size(char *map, t_data *data);
 
 /* map_solver.c */
+int				**create_visited_matrix(t_data *data);
 int				is_map_solvable(t_data *data);
 
 /* matrix.c */

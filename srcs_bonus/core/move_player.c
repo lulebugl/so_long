@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 22:42:14 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 14:50:13 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 15:17:02 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	ft_drowned(t_data *data, t_pos next)
 {
 	update_player_position(data, next);
 	update_map(data);
-	printf(" !");
 	ft_printf("=================================\n");
 	ft_printf("    🛟 You've drowned         !!!\n");
 	ft_printf("---------------------------------\n");
