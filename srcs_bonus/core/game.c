@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 16:12:31 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 21:25:23 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 21:36:41 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ int	update_map(t_data *data)
 {
 	int			x;
 	int			y;
-	t_texture	*tex;
-	t_pos		player;
 
 	erase_player_last_pos(data->map->player_prev, data);
 	x = data->map->exit.x;

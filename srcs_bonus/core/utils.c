@@ -6,11 +6,16 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 19:23:41 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 14:31:53 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 21:43:17 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long_bonus.h"
+
+void	set_err_msg(char *msg, t_data *data)
+{
+	data->err_msg = msg;
+}
 
 int	is_obstacle(t_map_element element)
 {

@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 13:00:14 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 20:56:22 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 21:44:00 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,6 @@ void	load_textures(t_data *data)
 
 t_texture	*get_texture_for_elem(t_data *data, int element, int x, int y)
 {
-	t_texture_type	tex_type;
-
 	if (element == EMPTY)
 		return (data->textures[check_adjacent(data, x, y)]);
 	if (element == TREE)
@@ -103,8 +101,7 @@ t_texture	*get_texture_for_elem(t_data *data, int element, int x, int y)
 	if (element == BUSH)
 		return (data->textures[TEX_BUSH]);
 	if (element == COLLECTIBLE)
-	    return (data->sheep.frames[data->sheep.current_frame]);
-		// return (data->textures[TEX_COLLECTIBLE]);
+		return (data->sheep.frames[data->sheep.current_frame]);
 	if (element == PLAYER)
 		return (data->textures[TEX_PLAYER]);
 	if (element == EXIT)

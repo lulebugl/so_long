@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 18:02:06 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 19:35:30 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 21:45:42 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ static void	draw_pixel(t_img *img, int x, int y, int color)
 
 static void	handle_big_tex(t_texture *tex, t_img *img, int start_x, int start_y)
 {
-	int	x;
-	int	y;
-	int	color;
+	int				x;
+	int				y;
+	unsigned int	color;
 
 	start_x += tex->offset_x;
 	start_y += tex->offset_y;

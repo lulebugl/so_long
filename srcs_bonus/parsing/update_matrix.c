@@ -6,22 +6,11 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 19:43:08 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 14:31:53 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 21:37:49 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long_bonus.h"
-
-static int	place_object(int **matrix, int x, int y)
-{
-	if (x <= 1)
-		return (0);
-	if (!is_obstacle(matrix[x][y]))
-		return (0);
-	if (matrix[x - 1][y] == WATER && is_obstacle(matrix[x - 2][y]))
-		return (1);
-	return (0);
-}
 
 static int	choose_object(int **matrix, int x, int y)
 {

@@ -6,16 +6,11 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 17:07:39 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 21:22:24 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 21:43:11 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long_bonus.h"
-
-void	set_err_msg(char *msg, t_data *data)
-{
-	data->err_msg = msg;
-}
 
 static void	clean_map(t_map *map)
 {
