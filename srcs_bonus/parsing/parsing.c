@@ -6,11 +6,11 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 18:48:23 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/18 18:22:34 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 14:31:53 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
+#include "../../includes/so_long_bonus.h"
 
 void	check_arguments(int ac, char **av, t_data *data)
 {

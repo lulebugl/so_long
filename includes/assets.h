@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:09:00 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/21 20:13:34 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 14:05:24 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define GRASS_HM "assets/tiles/hor_middle.xpm"
 # define GRASS_VT "assets/tiles/vertical_top.xpm"
 # define GRASS_VB "assets/tiles/vertical_bottom.xpm"
-# define GRASS_VM "assets/bridge_middle.xpm"
+# define GRASS_VM "assets/tiles/vertical_mid.xpm"
 # define GRASS_SINGLE "assets/tiles/single.xpm"
 # define TREE_PATH "assets/tiles/tree.xpm"
 # define TOP_TREE_PATH "assets/top_tree.xpm"

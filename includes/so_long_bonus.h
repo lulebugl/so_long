@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:33:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 14:51:35 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 14:39:56 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
@@ -20,12 +20,16 @@
 # include <X11/keysym.h>
 # include <assert.h>
 # include <fcntl.h>
+# include <math.h>
 # include <stdbool.h>
+# include <time.h>
 
 /* Constants */
+# define FULLSCREEN 0
 # define TILE_SIZE 64
 # define TRANSPARENCY_COLOR 0xFF000000
 # define VALID_OBJECT "01CEP\n"
+# define COLLISION -1
 
 /* Colors */
 # define RED "\033[0;31m"

@@ -6,11 +6,11 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 10:46:37 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/20 11:12:36 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 14:31:53 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
+#include "../../includes/so_long_bonus.h"
 
 void	ft_victory(t_data *data)
 {

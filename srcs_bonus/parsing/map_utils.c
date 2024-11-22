@@ -6,11 +6,11 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:49:54 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/20 10:44:58 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 14:31:53 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
+#include "../../includes/so_long_bonus.h"
 
 void	close_and_free(void *str, int fd)
 {

@@ -1,10 +1,14 @@
 so_long
+so_long_bonus
+objs
+objs_bonus
 
 # Prerequisites
 *.d
 
 # Object files
 *.o
+*/*.o
 *.ko
 *.obj
 *.elf

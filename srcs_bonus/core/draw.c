@@ -6,11 +6,11 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 18:02:06 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/18 17:00:48 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 14:31:53 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
+#include "../../includes/so_long_bonus.h"
 
 static void	draw_pixel(t_img *img, int x, int y, int color)
 {
