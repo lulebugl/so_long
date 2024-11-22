@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 10:46:37 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 19:22:57 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 21:29:26 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ void	ft_drowned(t_data *data, t_pos next)
 	ft_printf("    Collectibles left: %d\n", data->map->nb_collectible);
 	ft_printf("\n  Press any key to continue...\n\n");
 	ft_printf("=================================\n\n");
-	clean_up(data);
-	exit(0);
+	data->end = true;
 }
 
 void	ft_lost(t_data *data, t_pos next)

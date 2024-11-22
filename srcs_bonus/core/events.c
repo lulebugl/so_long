@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:16:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 16:04:27 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 21:26:26 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ static inline int	is_key_move(int keysym)
 
 int	on_keypress(int keysym, t_data *data)
 {
+	if (data->end)
+	{
+		clean_up(data);
+		exit(0);
+	}
 	if (keysym == XK_e)
 	{
 		if (data->pause)

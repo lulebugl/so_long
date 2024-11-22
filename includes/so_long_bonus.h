@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:33:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 20:56:13 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 21:23:00 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define ENNEMY -1
 # define DROWNED -2
 # define SHEEP_FRAMES 6
+
 /* Colors */
 # define RED "\033[0;31m"
 # define GREEN "\033[0;32m"
@@ -151,6 +152,7 @@ typedef struct s_data
 	int			nb_moves;
 	t_animation	sheep;
 	bool		pause;
+	bool		end;
 	t_map		*map;
 }				t_data;
 
