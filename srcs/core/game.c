@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 16:12:31 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/21 21:10:47 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 22:08:02 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,6 @@ void	init_window(t_data *data)
 			&data->img.line_length, &data->img.endian);
 }
 
-void	draw_top_tree(t_pos player, t_data *data)
-{
-	if (player.x < data->map->row - 2 \
-		&& data->map->matrix[player.x + 2][player.y] == TREE)
-	{
-		draw_texture(&data->img, data->textures[TEX_TOP_TREE], player.y
-			* TILE_SIZE, player.x * TILE_SIZE);
-	}
-}
-
 void	erase_player_last_pos(t_pos player, t_data *data)
 {
 	t_texture	*tex;
@@ -50,10 +40,8 @@ void	erase_player_last_pos(t_pos player, t_data *data)
 
 int	update_map(t_data *data)
 {
-	int			x;
-	int			y;
-	t_texture	*tex;
-	t_pos		player;
+	int	x;
+	int	y;
 
 	x = data->map->player.x;
 	y = data->map->player.y;
@@ -70,10 +58,18 @@ int	update_map(t_data *data)
 	return (0);
 }
 
+static int	game_loop(t_data *data)
+{
+	update_sheep_animation(data);
+	update_map(data);
+	return (0);
+}
+
 void	launch_game(t_data *data)
 {
 	init_window(data);
 	load_textures(data);
+	init_sheep_animation(data);
 	mlx_hook(data->win, KeyPress, KeyPressMask, &on_keypress, data);
 	mlx_hook(data->win, KeyRelease, KeyReleaseMask, &on_keyrelease, data);
 	mlx_hook(data->win, DestroyNotify, StructureNotifyMask, &on_destroy, data);
@@ -82,5 +78,6 @@ void	launch_game(t_data *data)
 	render_grass(data);
 	render_obstacles(data);
 	update_map(data);
+	mlx_loop_hook(data->mlx, &game_loop, data);
 	mlx_loop(data->mlx);
 }

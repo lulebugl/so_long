@@ -6,7 +6,7 @@
 #    By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/07 16:00:50 by llebugle          #+#    #+#              #
-#    Updated: 2024/11/22 20:01:21 by llebugle         ###   ########.fr        #
+#    Updated: 2024/11/22 22:06:14 by llebugle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRCS 	= main.c 						\
 			core/game.c					\
 			core/draw.c					\
 			core/autotiling.c			\
+			core/animations.c			\
 			core/move_player.c			\
 			core/utils.c				\
 			core/error.c				\
@@ -54,9 +55,8 @@ SRCS 	= main.c 						\
 
 SRCS_BONUS = $(SRCS) \
 			core/spawn_tnt.c		\
-			core/spawn_tnt_utils.c		\
-			core/bfs.c		\
-			core/animations.c		\
+			core/spawn_tnt_utils.c	\
+			core/bfs.c				\
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 OBJS_BONUS = $(addprefix $(OBJS_BONUS_DIR)/, $(SRCS_BONUS:.c=.o))
@@ -99,13 +99,11 @@ $(NAME_BONUS) : $(OBJS_BONUS)
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@mkdir -p $(dir $@)
-#@$(CC) $(CFLAGS) $(INC) -c $< -o $@
-	@$(CC) $(INC) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@	
 
 $(OBJS_BONUS_DIR)/%.o: $(SRCS_BONUS_DIR)/%.c
 	@mkdir -p $(dir $@)
-#@$(CC) $(CFLAGS) $(INC) -c $< -o $@
-	@$(CC) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 fclean : clean
 	@make fclean -C libft

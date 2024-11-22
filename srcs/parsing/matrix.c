@@ -6,20 +6,20 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:45:07 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/21 19:43:03 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 21:41:32 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-static int	put_player(int x, int y, t_data *data, int *row)
+static void	put_player(int x, int y, t_data *data, int *row)
 {
 	data->map->player = (t_pos){x, y};
 	data->map->player_prev = (t_pos){x, y};
 	row[y] = PLAYER;
 }
 
-static int	put_exit(int x, int y, t_data *data, int *row)
+static void	put_exit(int x, int y, t_data *data, int *row)
 {
 	data->map->exit = (t_pos){x, y};
 	row[y] = EXIT;

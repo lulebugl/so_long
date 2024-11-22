@@ -6,16 +6,11 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 17:07:39 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 20:26:36 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 22:13:30 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
-
-void	set_err_msg(char *msg, t_data *data)
-{
-	data->err_msg = msg;
-}
 
 static void	clean_map(t_map *map)
 {
@@ -43,6 +38,24 @@ void	cleanup_textures(t_data *data)
 	}
 }
 
+void	cleanup_animations(t_data *data)
+{
+	int	i;
+
+	i = -1;
+	if (!data->sheep.frames[0])
+		return ;
+	while (++i < SHEEP_FRAMES)
+	{
+		if (data->sheep.frames[i])
+		{
+			if (data->sheep.frames[i]->data)
+				free(data->sheep.frames[i]->data);
+			free(data->sheep.frames[i]);
+		}
+	}
+}
+
 void	clean_up(t_data *data)
 {
 	if (!data)
@@ -53,7 +66,9 @@ void	clean_up(t_data *data)
 		mlx_destroy_image(data->mlx, data->img.img);
 	cleanup_textures(data);
 	mlx_destroy_display(data->mlx);
+	cleanup_animations(data);
 	clean_map(data->map);
+	free(data->mlx);
 }
 
 void	display_err_and_exit(const char *msg, t_data *data)

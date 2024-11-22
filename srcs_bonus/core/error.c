@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 17:07:39 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 21:43:11 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 22:13:13 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	cleanup_animations(t_data *data)
 	int	i;
 
 	i = -1;
+	if (!data->sheep.frames[0])
+		return ;
 	while (++i < SHEEP_FRAMES)
 	{
 		if (data->sheep.frames[i])

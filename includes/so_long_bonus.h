@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:33:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 21:23:00 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 21:56:02 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 # include <time.h>
 
 /* Constants */
-# define FULLSCREEN 0
 # define TILE_SIZE 64
 # define TRANSPARENCY_COLOR 0xFF000000
 # define VALID_OBJECT "01CEP\n"
@@ -187,6 +186,13 @@ typedef struct s_pathfind
 	t_check		*check;
 }				t_pathfind;
 
+/* parsing */
+int				parse_arguments(int ac, char **av, t_data *data);
+
+/* move_player.c */
+void			move_player(const char *direction, t_data *data);
+void			update_player_position(t_data *data, t_pos next);
+
 /* animation.c */
 void			init_sheep_animation(t_data *data);
 void			update_sheep_animation(t_data *data);
@@ -203,16 +209,11 @@ int				collect_empty_spots(t_data *data, int *empty_spots);
 void			cleanup_pathfinding(int **visited, t_pos *queue, int row);
 void			spawn_tnt(t_data *data);
 
-int				parse_arguments(int ac, char **av, t_data *data);
-int				update_map(t_data *data);
-void			move_player(const char *direction, t_data *data);
-void			update_player_position(t_data *data, t_pos next);
-
-void			erase_player_last_pos(t_pos player, t_data *data);
-
 /* game.c */
-void			launch_game(t_data *data);
 void			init_window(t_data *data);
+void			erase_player_last_pos(t_pos player, t_data *data);
+int				update_map(t_data *data);
+void			launch_game(t_data *data);
 
 /* events.c */
 int				on_keypress(int keysym, t_data *data);

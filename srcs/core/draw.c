@@ -6,11 +6,21 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 18:02:06 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/18 17:00:48 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 21:59:20 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
+
+void	draw_top_tree(t_pos player, t_data *data)
+{
+	if (player.x < data->map->row - 2 \
+		&& data->map->matrix[player.x + 2][player.y] == TREE)
+	{
+		draw_texture(&data->img, data->textures[TEX_TOP_TREE], player.y
+			* TILE_SIZE, player.x * TILE_SIZE);
+	}
+}
 
 static void	draw_pixel(t_img *img, int x, int y, int color)
 {
@@ -24,9 +34,9 @@ static void	draw_pixel(t_img *img, int x, int y, int color)
 
 static void	handle_big_tex(t_texture *tex, t_img *img, int start_x, int start_y)
 {
-	int	x;
-	int	y;
-	int	color;
+	int				x;
+	int				y;
+	unsigned int	color;
 
 	start_x += tex->offset_x;
 	start_y += tex->offset_y;

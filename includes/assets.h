@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:09:00 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 20:27:21 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 21:57:32 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define GRASS_SINGLE "assets/tiles/single.xpm"
 # define TREE_PATH "assets/tiles/tree.xpm"
 # define TOP_TREE_PATH "assets/top_tree.xpm"
-# define COLLECTIBLE_PATH "assets/bone.xpm"
+# define COLLECTIBLE_PATH "assets/sheep1.xpm"
 # define PLAYER_PATH "assets/player.xpm"
 # define EXIT_PATH "assets/exit.xpm"
 # define TREE_TRUNK_PATH "assets/trunk.xpm"

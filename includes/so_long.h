@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:33:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 14:51:35 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 22:04:38 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define TILE_SIZE 64
 # define TRANSPARENCY_COLOR 0xFF000000
 # define VALID_OBJECT "01CEP\n"
+# define SHEEP_FRAMES 6
 
 /* Colors */
 # define RED "\033[0;31m"
@@ -105,6 +106,15 @@ typedef struct s_texture
 	int			offset_y;
 }				t_texture;
 
+typedef struct s_animation
+{
+	t_texture	*frames[SHEEP_FRAMES];
+	int			current_frame;
+	int			frame_count;
+	int			frame_delay;
+	int			delay_counter;
+}				t_animation;
+
 typedef struct s_keys
 {
 	int			left;
@@ -134,6 +144,7 @@ typedef struct s_data
 	int			max_col;
 	char		*err_msg;
 	int			nb_moves;
+	t_animation	sheep;
 	t_map		*map;
 }				t_data;
 
@@ -149,14 +160,20 @@ typedef enum e_map_element
 	TRUNK = '[',
 	BUSH = '&',
 	BANNER = 'B',
-	GOBLIN = 'G',
 	FOAM = '$',
 }				t_map_element;
 
+/* animation.c */
+void			init_sheep_animation(t_data *data);
+void			update_sheep_animation(t_data *data);
+
+/* parsing */
 int				parse_arguments(int ac, char **av, t_data *data);
 int				update_map(t_data *data);
+
+/* move_player.c */
 void			move_player(const char *direction, t_data *data);
-void			erase_player_last_pos(t_pos player, t_data *data);
+void			update_player_position(t_data *data, t_pos next);
 
 /* game.c */
 void			launch_game(t_data *data);
@@ -196,10 +213,14 @@ void			render_foam(t_data *data);
 int				render_obstacles(t_data *data);
 
 /* textures.c */
+t_texture		*load_texture(void *mlx, char *path);
 void			load_textures(t_data *data);
 t_texture		*get_texture_for_elem(t_data *data, int element, int x, int y);
+
+/* draw.c */
 void			draw_texture(t_img *img, t_texture *tex, int start_x,
 					int start_y);
+void			draw_top_tree(t_pos player, t_data *data);
 
 /* autotiling.c */
 t_texture_type	check_adjacent(t_data *data, int x, int y);
