@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 16:12:31 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 19:45:17 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 21:00:54 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,13 @@ int	update_map(t_data *data)
 
 int	game_loop(t_data *data)
 {
+	update_sheep_animation(data);
+	update_map(data);
 	if (data->pause)
 		return (0);
 	spawn_tnt(data);
 	update_map(data);
+
 	return (0);
 }
 
@@ -73,6 +76,7 @@ void	launch_game(t_data *data)
 {
 	init_window(data);
 	load_textures(data);
+	init_sheep_animation(data);
 	srand(time(NULL));
 	mlx_hook(data->win, KeyPress, KeyPressMask, &on_keypress, data);
 	mlx_hook(data->win, KeyRelease, KeyReleaseMask, &on_keyrelease, data);

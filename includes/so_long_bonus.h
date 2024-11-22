@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:33:30 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 19:13:40 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 20:56:13 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define VALID_OBJECT "01CEP\n"
 # define ENNEMY -1
 # define DROWNED -2
-
+# define SHEEP_FRAMES 6
 /* Colors */
 # define RED "\033[0;31m"
 # define GREEN "\033[0;32m"
@@ -111,6 +111,15 @@ typedef struct s_texture
 	int			offset_y;
 }				t_texture;
 
+typedef struct s_animation
+{
+	t_texture	*frames[SHEEP_FRAMES];
+	int			current_frame;
+	int			frame_count;
+	int			frame_delay;
+	int			delay_counter;
+}				t_animation;
+
 typedef struct s_keys
 {
 	int			left;
@@ -140,6 +149,7 @@ typedef struct s_data
 	int			max_col;
 	char		*err_msg;
 	int			nb_moves;
+	t_animation	sheep;
 	bool		pause;
 	t_map		*map;
 }				t_data;
@@ -174,6 +184,10 @@ typedef struct s_pathfind
 	int			*rear;
 	t_check		*check;
 }				t_pathfind;
+
+/* animation.c */
+void			init_sheep_animation(t_data *data);
+void			update_sheep_animation(t_data *data);
 
 /* bfs.c */
 bool			check_paths_bfs(t_data *data, t_pathfind *pf);
@@ -235,6 +249,7 @@ void			render_foam(t_data *data);
 int				render_obstacles(t_data *data);
 
 /* textures.c */
+t_texture		*load_texture(void *mlx, char *path);
 void			load_textures(t_data *data);
 t_texture		*get_texture_for_elem(t_data *data, int element, int x, int y);
 

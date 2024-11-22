@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 17:07:39 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/18 18:10:49 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 20:26:36 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	clean_up(t_data *data)
 		mlx_destroy_image(data->mlx, data->img.img);
 	cleanup_textures(data);
 	mlx_destroy_display(data->mlx);
-	free(data->mlx);
 	clean_map(data->map);
 }
 

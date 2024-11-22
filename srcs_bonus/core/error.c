@@ -6,7 +6,7 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 17:07:39 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 14:31:53 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 20:55:53 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,22 @@ void	cleanup_textures(t_data *data)
 	}
 }
 
+void	cleanup_animations(t_data *data)
+{
+	int	i;
+
+	i = -1;
+	while (++i < 3)
+	{
+		if (data->sheep.frames[i])
+		{
+			if (data->sheep.frames[i]->data)
+				free(data->sheep.frames[i]->data);
+			free(data->sheep.frames[i]);
+		}
+	}
+}
+
 void	clean_up(t_data *data)
 {
 	if (!data)
@@ -53,6 +69,7 @@ void	clean_up(t_data *data)
 		mlx_destroy_image(data->mlx, data->img.img);
 	cleanup_textures(data);
 	mlx_destroy_display(data->mlx);
+	cleanup_animations(data);
 	free(data->mlx);
 	clean_map(data->map);
 }

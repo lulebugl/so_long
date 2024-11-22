@@ -6,7 +6,7 @@
 #    By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/07 16:00:50 by llebugle          #+#    #+#              #
-#    Updated: 2024/11/22 17:29:33 by llebugle         ###   ########.fr        #
+#    Updated: 2024/11/22 20:01:21 by llebugle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ SRCS_BONUS = $(SRCS) \
 			core/spawn_tnt.c		\
 			core/spawn_tnt_utils.c		\
 			core/bfs.c		\
+			core/animations.c		\
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 OBJS_BONUS = $(addprefix $(OBJS_BONUS_DIR)/, $(SRCS_BONUS:.c=.o))

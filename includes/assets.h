@@ -6,14 +6,12 @@
 /*   By: llebugle <lucas.lebugle@student.s19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:09:00 by llebugle          #+#    #+#             */
-/*   Updated: 2024/11/22 19:39:11 by llebugle         ###   ########.fr       */
+/*   Updated: 2024/11/22 20:27:21 by llebugle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ASSETS_H
 # define ASSETS_H
-
-# define NINJA "./assets/ninja.pxpm"
 
 # define GRASS "assets/tiles/middle.xpm"
 # define WATER_PATH "assets/tiles/water.xpm"
