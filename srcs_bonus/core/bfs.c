@@ -63,6 +63,8 @@ bool	check_paths_bfs(t_data *data, t_pathfind *pf)
 		current = pf->queue[(*pf->front)++];
 		process_position(data, current, pf->check);
 		check_adjacents(data, pf, current);
+		if (pf->check->reached_exit && pf->check->collectibles == data->map->nb_collectible)
+			return (1);
 	}
 	return (pf->check->reached_exit
 		&& pf->check->collectibles == data->map->nb_collectible);
