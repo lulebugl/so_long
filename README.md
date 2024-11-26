@@ -6,6 +6,8 @@ A 2D adventure game built with MinilibX where players navigate through custom ma
 
 In So_long, you control a character through various terrain types, including grass and water. Your mission is to collect all sheep and reach the exit while avoiding hazards like water and hostile goblins.
 
+![Example map](assets/readme/so_long.gif)
+
 ## Features
 
 - Animated collectibles and water effects
