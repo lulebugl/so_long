@@ -10,10 +10,10 @@ In So_long, you control a character through various terrain types, including gra
 
 ## Features
 
-- Animated collectibles and water effects
+- Animated collectibles
 - Auto-tiling system for natural-looking terrain
-- Breadth-first-search algorithm to place ennemy in real-time
 - Flood-filling algorithm to test if the game is playable
+- Breadth-first-search algorithm to place ennemy in real-time
 
 ## Installation
 
@@ -34,8 +34,8 @@ make bonus  # Enhanced version with enemies and animations
 ## Usage
 
 ```bash
-./so_long [map_file].ber      # Regular version
-./so_long_bonus [map_file].ber  # Enhanced version
+./so_long [map_file].ber
+./so_long_bonus [map_file].ber
 ```
 
 ### Controls
