@@ -10,6 +10,8 @@ In So_long, you control a character through various terrain types, including gra
 
 ## Features
 
+Only works on linux for now
+
 - Animated collectibles
 - Auto-tiling system for natural-looking terrain
 - Flood-filling algorithm to test if the game is playable
