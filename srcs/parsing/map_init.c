@@ -82,7 +82,6 @@ int	read_map(char *filename, t_data *data)
 		return (-1);
 	if (store_map(fd, data, &map) != 0)
 		return (close_and_free(map, fd), -1);
-	assert(map != NULL);
 	if (validate_map_content(map, data) != 0)
 		return (close_and_free(map, fd), -1);
 	tab = validate_map_size(map, data);
