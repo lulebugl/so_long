@@ -84,4 +84,4 @@ Example map:
 - MinilibX provided by 42 School
 
 ---
-Made with by [llebugle] at 19 School.
+Made by [llebugle] at 19 School.
